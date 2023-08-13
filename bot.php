@@ -362,10 +362,20 @@ class PacketHandler
 		Console::Log("🌏 ". $name .": ". $message);
 	}
 	
+	public function Talk_Player($packet)
+	{
+		$id = $packet->get_int(2);
+		$message = $packet->get_string();
+		
+		Console::Log("💬 N/A: ". $message);
+	}
+	
 	public function Talk_tell($packet)
 	{
 		$name = $packet->get_string();
 		$message = $packet->get_string();
+		
+		Console::Log("✉️ ". $name .": ". $message);
 		
 		if($message[0] == '#')
 		{
