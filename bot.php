@@ -10,13 +10,6 @@ require_once('src/ServerSocket.class.php');
 require_once('src/CommandHandler.class.php');
 require_once('src/PacketHandler.class.php');
 
-class ChatMessage
-{
-	public $time;
-	public $name;
-	public $message;
-}
-
 class LocalMessage extends ChatMessage
 {
 	public $character_id;

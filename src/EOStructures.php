@@ -33,6 +33,12 @@ class EOCharacterPreview
 	public $paperdoll;
 }
 
+class ChatMessage
+{
+	public $time;
+	public $name;
+	public $message;
+}
 
 class EOCharacter {
 	const DIRECTION_MASK = 0x03;     // 0b00000011
