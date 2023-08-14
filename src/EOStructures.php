@@ -18,8 +18,30 @@
  */
 
 /* TODO: refactor all this */
+class EOCharacterPreview
+{
+	public $name;
+	public $date_created;
+	public $last_login;
+	public $id;
+	public $level;
+	public $gender;
+	public $hairstyle;
+	public $haircolor;
+	public $skin;
+	public $admin_level;
+	public $paperdoll;
+}
+
 
 class EOCharacter {
+	const DIRECTION_MASK = 0x03;     // 0b00000011
+	const SITTING_MASK = 0x10;       // 0b00010000
+	const CHAIR_SITTING_MASK = 0x20; // 0b00100000
+	const HIDDEN_MASK = 0x40;        // 0b01000000
+	const GENDER_MASK = 0x80;       // 0b10000000
+	const SKIN_MASK = 0x0F;         // 0b00001111
+	
     public $name;
     public $id;
     public $map_id;
@@ -39,11 +61,14 @@ class EOCharacter {
     public $admin;
     public $paperdoll;
     public $inventory;
+	public $sitting; // 0 false, 1 ground, 2 chair
+	public $hidden;
 
 
     function __construct() {
         $this->paperdoll = new EOPaperdoll();
         $this->inventory = new EOInventory();
+		$this->sitting = 0;
     }
 }
 
