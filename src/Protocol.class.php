@@ -170,6 +170,10 @@ class Protocol {
     const EMOTE_TRADE = 12;
     const EMOTE_LEVELUP = 13;
     const EMOTE_PLAYFUL = 14;
+	
+	const TRADE_REQUESTED = 0;
+	const TRADE_TRADING = 1;
+	const TRADE_ACCEPTED = 2;
 
     public static function DecodeInteger($bytes) {
         if (strlen($bytes) > 5) {

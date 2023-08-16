@@ -1,0 +1,2866 @@
+{
+    "1": {
+        "id": "1",
+        "name": "Eon"
+    },
+    "2": {
+        "id": "2",
+        "name": "Gold"
+    },
+    "3": {
+        "id": "3",
+        "name": "Cur3-res"
+    },
+    "4": {
+        "id": "4",
+        "name": "Cur4-res"
+    },
+    "5": {
+        "id": "5",
+        "name": "Cur5-res"
+    },
+    "6": {
+        "id": "6",
+        "name": "Cur6-res"
+    },
+    "7": {
+        "id": "7",
+        "name": "Cur7-res"
+    },
+    "8": {
+        "id": "8",
+        "name": "Cur8-res"
+    },
+    "9": {
+        "id": "9",
+        "name": "Void Energy"
+    },
+    "22": {
+        "id": "22",
+        "name": "Puffyweed"
+    },
+    "23": {
+        "id": "23",
+        "name": "Shiny Puffyweed"
+    },
+    "24": {
+        "id": "24",
+        "name": "Rich Puffyweed"
+    },
+    "25": {
+        "id": "25",
+        "name": "Pure Puffyweed"
+    },
+    "26": {
+        "id": "26",
+        "name": "Starflower"
+    },
+    "27": {
+        "id": "27",
+        "name": "Skyflower"
+    },
+    "30": {
+        "id": "30",
+        "name": "Daggapuff"
+    },
+    "31": {
+        "id": "31",
+        "name": "Shiny Daggapuff"
+    },
+    "32": {
+        "id": "32",
+        "name": "Rich Daggapuff"
+    },
+    "33": {
+        "id": "33",
+        "name": "Pure Daggapuff"
+    },
+    "46": {
+        "id": "46",
+        "name": "Empty Bucket"
+    },
+    "47": {
+        "id": "47",
+        "name": "Bucket Of Water"
+    },
+    "48": {
+        "id": "48",
+        "name": "Bucket Of Clear Water"
+    },
+    "49": {
+        "id": "49",
+        "name": "Bucket Of Milk"
+    },
+    "50": {
+        "id": "50",
+        "name": "Red Berry"
+    },
+    "51": {
+        "id": "51",
+        "name": "Blue Berry"
+    },
+    "52": {
+        "id": "52",
+        "name": "Orange Berry"
+    },
+    "53": {
+        "id": "53",
+        "name": "Green Berry"
+    },
+    "54": {
+        "id": "54",
+        "name": "Purple Berry"
+    },
+    "55": {
+        "id": "55",
+        "name": "Pink Berry"
+    },
+    "56": {
+        "id": "56",
+        "name": "Yellow Berry"
+    },
+    "57": {
+        "id": "57",
+        "name": "White Berry"
+    },
+    "58": {
+        "id": "58",
+        "name": "Black Berry"
+    },
+    "59": {
+        "id": "59",
+        "name": "Rich Berry Mix"
+    },
+    "60": {
+        "id": "60",
+        "name": "Grim Berry Mix"
+    },
+    "63": {
+        "id": "63",
+        "name": "Veggy Mix"
+    },
+    "64": {
+        "id": "64",
+        "name": "Apple"
+    },
+    "65": {
+        "id": "65",
+        "name": "Apple Juice"
+    },
+    "66": {
+        "id": "66",
+        "name": "Refined Apple Juice"
+    },
+    "67": {
+        "id": "67",
+        "name": "Ananas"
+    },
+    "68": {
+        "id": "68",
+        "name": "Ananas Juice"
+    },
+    "69": {
+        "id": "69",
+        "name": "Refined Ananas Juice"
+    },
+    "70": {
+        "id": "70",
+        "name": "Banana"
+    },
+    "71": {
+        "id": "71",
+        "name": "Banana Juice"
+    },
+    "72": {
+        "id": "72",
+        "name": "Refined Banana Juice"
+    },
+    "85": {
+        "id": "85",
+        "name": "Egg"
+    },
+    "86": {
+        "id": "86",
+        "name": "Patato"
+    },
+    "87": {
+        "id": "87",
+        "name": "Honey"
+    },
+    "88": {
+        "id": "88",
+        "name": "Yellow Fruit"
+    },
+    "89": {
+        "id": "89",
+        "name": "Small Bread"
+    },
+    "90": {
+        "id": "90",
+        "name": "Pumpkin"
+    },
+    "91": {
+        "id": "91",
+        "name": "Brush"
+    },
+    "92": {
+        "id": "92",
+        "name": "Pickle"
+    },
+    "93": {
+        "id": "93",
+        "name": "Crop Salad"
+    },
+    "94": {
+        "id": "94",
+        "name": "Stinky Carrot"
+    },
+    "95": {
+        "id": "95",
+        "name": "Carrot"
+    },
+    "96": {
+        "id": "96",
+        "name": "Patato"
+    },
+    "97": {
+        "id": "97",
+        "name": "Butter"
+    },
+    "98": {
+        "id": "98",
+        "name": "Honey"
+    },
+    "111": {
+        "id": "111",
+        "name": "Tiny Health Potion"
+    },
+    "112": {
+        "id": "112",
+        "name": "Empty Minor Potion"
+    },
+    "113": {
+        "id": "113",
+        "name": "Empty Small Potion"
+    },
+    "114": {
+        "id": "114",
+        "name": "Empty Regular Potion"
+    },
+    "115": {
+        "id": "115",
+        "name": "Empty Great Potion"
+    },
+    "116": {
+        "id": "116",
+        "name": "Empty Greater Potion"
+    },
+    "117": {
+        "id": "117",
+        "name": "Empty Big Potion"
+    },
+    "118": {
+        "id": "118",
+        "name": "Empty Super Potion"
+    },
+    "119": {
+        "id": "119",
+        "name": "Empty Jumbo Potion"
+    },
+    "120": {
+        "id": "120",
+        "name": "Empty Mega Potion"
+    },
+    "121": {
+        "id": "121",
+        "name": "Empty Ultra Potion"
+    },
+    "122": {
+        "id": "122",
+        "name": "Empty Exotic Potion"
+    },
+    "123": {
+        "id": "123",
+        "name": "Empty Devine Potion"
+    },
+    "124": {
+        "id": "124",
+        "name": "Empty Heaven Potion"
+    },
+    "128": {
+        "id": "128",
+        "name": "Minor Health Potion"
+    },
+    "129": {
+        "id": "129",
+        "name": "Small Health Potion"
+    },
+    "130": {
+        "id": "130",
+        "name": "Regular Health Potion"
+    },
+    "131": {
+        "id": "131",
+        "name": "Great Health Potion"
+    },
+    "132": {
+        "id": "132",
+        "name": "Greater Health Potion"
+    },
+    "133": {
+        "id": "133",
+        "name": "Big Health Potion"
+    },
+    "134": {
+        "id": "134",
+        "name": "Super Health Potion"
+    },
+    "135": {
+        "id": "135",
+        "name": "Jumbo Health Potion"
+    },
+    "136": {
+        "id": "136",
+        "name": "Mega Health Potion"
+    },
+    "137": {
+        "id": "137",
+        "name": "Ultra Health Potion"
+    },
+    "138": {
+        "id": "138",
+        "name": "Exotic Health Potion"
+    },
+    "139": {
+        "id": "139",
+        "name": "Devine Health Potion"
+    },
+    "140": {
+        "id": "140",
+        "name": "Heaven Health Potion"
+    },
+    "144": {
+        "id": "144",
+        "name": "Minor Magic Potion"
+    },
+    "145": {
+        "id": "145",
+        "name": "Small Magic Potion"
+    },
+    "146": {
+        "id": "146",
+        "name": "Regular Magic Potion"
+    },
+    "147": {
+        "id": "147",
+        "name": "Great Magic Potion"
+    },
+    "148": {
+        "id": "148",
+        "name": "Greater Magic Potion"
+    },
+    "149": {
+        "id": "149",
+        "name": "Big Magic Potion"
+    },
+    "150": {
+        "id": "150",
+        "name": "Super Magic Potion"
+    },
+    "151": {
+        "id": "151",
+        "name": "Jumbo Magic Potion"
+    },
+    "152": {
+        "id": "152",
+        "name": "Mega Magic Potion"
+    },
+    "153": {
+        "id": "153",
+        "name": "Ultra Magic Potion"
+    },
+    "154": {
+        "id": "154",
+        "name": "Exotic Magic Potion"
+    },
+    "155": {
+        "id": "155",
+        "name": "Devine Magic Potion"
+    },
+    "156": {
+        "id": "156",
+        "name": "Heaven Magic Potion"
+    },
+    "160": {
+        "id": "160",
+        "name": "Minor Special Potion"
+    },
+    "161": {
+        "id": "161",
+        "name": "Small Special Potion"
+    },
+    "162": {
+        "id": "162",
+        "name": "Regular Special Potion"
+    },
+    "163": {
+        "id": "163",
+        "name": "Great Special Potion"
+    },
+    "164": {
+        "id": "164",
+        "name": "Greater Special Potion"
+    },
+    "165": {
+        "id": "165",
+        "name": "Big Special Potion"
+    },
+    "166": {
+        "id": "166",
+        "name": "Super Special Potion"
+    },
+    "167": {
+        "id": "167",
+        "name": "Jumbo Special Potion"
+    },
+    "168": {
+        "id": "168",
+        "name": "Mega Special Potion"
+    },
+    "169": {
+        "id": "169",
+        "name": "Ultra Special Potion"
+    },
+    "170": {
+        "id": "170",
+        "name": "Exotic Special Potion"
+    },
+    "171": {
+        "id": "171",
+        "name": "Devine Special Potion"
+    },
+    "172": {
+        "id": "172",
+        "name": "Heaven Special Potion"
+    },
+    "176": {
+        "id": "176",
+        "name": "Minor Elixer Potion"
+    },
+    "177": {
+        "id": "177",
+        "name": "Small Elixer Potion"
+    },
+    "178": {
+        "id": "178",
+        "name": "Regular Elixer Potion"
+    },
+    "179": {
+        "id": "179",
+        "name": "Great Elixer Potion"
+    },
+    "180": {
+        "id": "180",
+        "name": "Greater Elixer Potion"
+    },
+    "181": {
+        "id": "181",
+        "name": "Big Elixer Potion"
+    },
+    "182": {
+        "id": "182",
+        "name": "Super Elixer Potion"
+    },
+    "183": {
+        "id": "183",
+        "name": "Jumbo Elixer Potion"
+    },
+    "184": {
+        "id": "184",
+        "name": "Mega Elixer Potion"
+    },
+    "185": {
+        "id": "185",
+        "name": "Ultra Elixer Potion"
+    },
+    "186": {
+        "id": "186",
+        "name": "Exotic Elixer Potion"
+    },
+    "187": {
+        "id": "187",
+        "name": "Devine Elixer Potion"
+    },
+    "188": {
+        "id": "188",
+        "name": "Heaven Elixer Potion"
+    },
+    "192": {
+        "id": "192",
+        "name": "Cure Potion"
+    },
+    "199": {
+        "id": "199",
+        "name": "Title Cerficitate"
+    },
+    "200": {
+        "id": "200",
+        "name": "Minor Fairysoda"
+    },
+    "201": {
+        "id": "201",
+        "name": "Small Fairysoda"
+    },
+    "202": {
+        "id": "202",
+        "name": "Big Fairysoda"
+    },
+    "203": {
+        "id": "203",
+        "name": "Brown Hair Dye"
+    },
+    "204": {
+        "id": "204",
+        "name": "Green Hair Dye"
+    },
+    "205": {
+        "id": "205",
+        "name": "Pink Hair Dye"
+    },
+    "206": {
+        "id": "206",
+        "name": "Red Hair Dye"
+    },
+    "207": {
+        "id": "207",
+        "name": "Blond Hair Dye"
+    },
+    "208": {
+        "id": "208",
+        "name": "Blue Hair Dye"
+    },
+    "209": {
+        "id": "209",
+        "name": "Purple Hair Dye"
+    },
+    "210": {
+        "id": "210",
+        "name": "Luna Hair Dye"
+    },
+    "211": {
+        "id": "211",
+        "name": "White Hair Dye"
+    },
+    "212": {
+        "id": "212",
+        "name": "Black Hair Dye"
+    },
+    "213": {
+        "id": "213",
+        "name": "Aeven Shaver"
+    },
+    "214": {
+        "id": "214",
+        "name": "Magic Hairtool"
+    },
+    "234": {
+        "id": "234",
+        "name": "Scroll of Minor Exp"
+    },
+    "235": {
+        "id": "235",
+        "name": "Scroll of Exp"
+    },
+    "236": {
+        "id": "236",
+        "name": "Scroll of Great Exp"
+    },
+    "237": {
+        "id": "237",
+        "name": "Scroll of Devine Exp"
+    },
+    "240": {
+        "id": "240",
+        "name": "Potion of Flames"
+    },
+    "241": {
+        "id": "241",
+        "name": "Potion of Love"
+    },
+    "242": {
+        "id": "242",
+        "name": "Potion of Celebrate"
+    },
+    "243": {
+        "id": "243",
+        "name": "Potion of Sparkles"
+    },
+    "244": {
+        "id": "244",
+        "name": "Potion of Evil"
+    },
+    "245": {
+        "id": "245",
+        "name": "Potion of Terror"
+    },
+    "250": {
+        "id": "250",
+        "name": "Basic Magic Powder"
+    },
+    "251": {
+        "id": "251",
+        "name": "Boots Dye"
+    },
+    "252": {
+        "id": "252",
+        "name": "Mini Stone"
+    },
+    "253": {
+        "id": "253",
+        "name": "Brick"
+    },
+    "254": {
+        "id": "254",
+        "name": "Cotton"
+    },
+    "255": {
+        "id": "255",
+        "name": "Web"
+    },
+    "256": {
+        "id": "256",
+        "name": "Rope"
+    },
+    "257": {
+        "id": "257",
+        "name": "Strings"
+    },
+    "258": {
+        "id": "258",
+        "name": "Sand"
+    },
+    "259": {
+        "id": "259",
+        "name": "Sandstone"
+    },
+    "260": {
+        "id": "260",
+        "name": "Glass"
+    },
+    "262": {
+        "id": "262",
+        "name": "Leather Fragment"
+    },
+    "263": {
+        "id": "263",
+        "name": "Leather"
+    },
+    "264": {
+        "id": "264",
+        "name": "Fur Fragment"
+    },
+    "265": {
+        "id": "265",
+        "name": "Pile Of Fur"
+    },
+    "266": {
+        "id": "266",
+        "name": "Raw Fiber"
+    },
+    "267": {
+        "id": "267",
+        "name": "Woven Fabric"
+    },
+    "268": {
+        "id": "268",
+        "name": "Refined Fabric"
+    },
+    "269": {
+        "id": "269",
+        "name": "Textile"
+    },
+    "270": {
+        "id": "270",
+        "name": "Woven Textile"
+    },
+    "271": {
+        "id": "271",
+        "name": "Refined Textile"
+    },
+    "272": {
+        "id": "272",
+        "name": "Twigs"
+    },
+    "273": {
+        "id": "273",
+        "name": "Pile of Twigs"
+    },
+    "274": {
+        "id": "274",
+        "name": "Wood Log"
+    },
+    "275": {
+        "id": "275",
+        "name": "Wood"
+    },
+    "276": {
+        "id": "276",
+        "name": "Timber"
+    },
+    "277": {
+        "id": "277",
+        "name": "Pile Of Timber"
+    },
+    "280": {
+        "id": "280",
+        "name": "Wood Handle"
+    },
+    "281": {
+        "id": "281",
+        "name": "Wood Sticks"
+    },
+    "282": {
+        "id": "282",
+        "name": "Iron Ore"
+    },
+    "283": {
+        "id": "283",
+        "name": "Iron"
+    },
+    "284": {
+        "id": "284",
+        "name": "Iron Bar"
+    },
+    "285": {
+        "id": "285",
+        "name": "Tin Ore"
+    },
+    "286": {
+        "id": "286",
+        "name": "Tin"
+    },
+    "287": {
+        "id": "287",
+        "name": "Tin Bar"
+    },
+    "288": {
+        "id": "288",
+        "name": "Copper Ore"
+    },
+    "289": {
+        "id": "289",
+        "name": "Copper"
+    },
+    "290": {
+        "id": "290",
+        "name": "Copper Bar"
+    },
+    "291": {
+        "id": "291",
+        "name": "Mythril Ore"
+    },
+    "292": {
+        "id": "292",
+        "name": "Mythril"
+    },
+    "293": {
+        "id": "293",
+        "name": "Mythril Bar"
+    },
+    "294": {
+        "id": "294",
+        "name": "Carbon Ore"
+    },
+    "295": {
+        "id": "295",
+        "name": "Carbon"
+    },
+    "296": {
+        "id": "296",
+        "name": "Carbon Bar"
+    },
+    "297": {
+        "id": "297",
+        "name": "Gold Ore"
+    },
+    "298": {
+        "id": "298",
+        "name": "Gold"
+    },
+    "299": {
+        "id": "299",
+        "name": "Gold Bar"
+    },
+    "300": {
+        "id": "300",
+        "name": "Zinc Ore"
+    },
+    "301": {
+        "id": "301",
+        "name": "Zinc"
+    },
+    "302": {
+        "id": "302",
+        "name": "Zinc Bar"
+    },
+    "303": {
+        "id": "303",
+        "name": "Void Ore"
+    },
+    "304": {
+        "id": "304",
+        "name": "Void"
+    },
+    "305": {
+        "id": "305",
+        "name": "Void Bar"
+    },
+    "306": {
+        "id": "306",
+        "name": "Bronze"
+    },
+    "307": {
+        "id": "307",
+        "name": "Bronze Bar"
+    },
+    "308": {
+        "id": "308",
+        "name": "Bronze Plating"
+    },
+    "309": {
+        "id": "309",
+        "name": "Bronze Coating"
+    },
+    "310": {
+        "id": "310",
+        "name": "Steel"
+    },
+    "311": {
+        "id": "311",
+        "name": "Steel Bar"
+    },
+    "312": {
+        "id": "312",
+        "name": "Plating"
+    },
+    "313": {
+        "id": "313",
+        "name": "Light Plating"
+    },
+    "314": {
+        "id": "314",
+        "name": "Heavy Plating"
+    },
+    "315": {
+        "id": "315",
+        "name": "Refined Plating"
+    },
+    "316": {
+        "id": "316",
+        "name": "Iron Parts"
+    },
+    "317": {
+        "id": "317",
+        "name": "Metal Parts"
+    },
+    "343": {
+        "id": "343",
+        "name": "Crow Claw"
+    },
+    "344": {
+        "id": "344",
+        "name": "Rat Tail"
+    },
+    "345": {
+        "id": "345",
+        "name": "Goat Horn"
+    },
+    "346": {
+        "id": "346",
+        "name": "Mummy Bandage"
+    },
+    "347": {
+        "id": "347",
+        "name": "Fox Fur"
+    },
+    "348": {
+        "id": "348",
+        "name": "Snake Tooth"
+    },
+    "349": {
+        "id": "349",
+        "name": "Snake Rattle"
+    },
+    "350": {
+        "id": "350",
+        "name": "Centaur Hoof"
+    },
+    "351": {
+        "id": "351",
+        "name": "Spider Eyes"
+    },
+    "352": {
+        "id": "352",
+        "name": "Spider Leg"
+    },
+    "354": {
+        "id": "354",
+        "name": "Penguin Meat"
+    },
+    "355": {
+        "id": "355",
+        "name": "Cyclops Eye"
+    },
+    "356": {
+        "id": "356",
+        "name": "Skeleton Bone"
+    },
+    "357": {
+        "id": "357",
+        "name": "Skeleton Rib"
+    },
+    "358": {
+        "id": "358",
+        "name": "Barbarian Ear"
+    },
+    "359": {
+        "id": "359",
+        "name": "Beatle Fangs"
+    },
+    "360": {
+        "id": "360",
+        "name": "Wingo Claw"
+    },
+    "361": {
+        "id": "361",
+        "name": "Vyercil tentacles"
+    },
+    "362": {
+        "id": "362",
+        "name": "Dark rag"
+    },
+    "363": {
+        "id": "363",
+        "name": "Bird Feather"
+    },
+    "364": {
+        "id": "364",
+        "name": "Chicken Feather"
+    },
+    "365": {
+        "id": "365",
+        "name": "Horse Hoof"
+    },
+    "366": {
+        "id": "366",
+        "name": "Wolfman Fur"
+    },
+    "367": {
+        "id": "367",
+        "name": "Frog Scrubs"
+    },
+    "368": {
+        "id": "368",
+        "name": "Bat Wing"
+    },
+    "369": {
+        "id": "369",
+        "name": "Stinger Eye"
+    },
+    "370": {
+        "id": "370",
+        "name": "Worm Segment"
+    },
+    "371": {
+        "id": "371",
+        "name": "Worm Head"
+    },
+    "372": {
+        "id": "372",
+        "name": "Ant Legs"
+    },
+    "373": {
+        "id": "373",
+        "name": "Teawk Tentacle"
+    },
+    "374": {
+        "id": "374",
+        "name": "Needles"
+    },
+    "375": {
+        "id": "375",
+        "name": "Blue Star"
+    },
+    "376": {
+        "id": "376",
+        "name": "Ice Gem"
+    },
+    "377": {
+        "id": "377",
+        "name": "Ice Cube"
+    },
+    "378": {
+        "id": "378",
+        "name": "Golom Stone"
+    },
+    "379": {
+        "id": "379",
+        "name": "Gnome Hat"
+    },
+    "380": {
+        "id": "380",
+        "name": "Gnome Doll"
+    },
+    "381": {
+        "id": "381",
+        "name": "Ewak Legs"
+    },
+    "382": {
+        "id": "382",
+        "name": "Geggime Fur"
+    },
+    "383": {
+        "id": "383",
+        "name": "Taewcus Tentacle"
+    },
+    "384": {
+        "id": "384",
+        "name": "Snail House"
+    },
+    "385": {
+        "id": "385",
+        "name": "Snail Tie"
+    },
+    "386": {
+        "id": "386",
+        "name": "Mushroom"
+    },
+    "387": {
+        "id": "387",
+        "name": "Optica Batwing"
+    },
+    "388": {
+        "id": "388",
+        "name": "Leaves"
+    },
+    "389": {
+        "id": "389",
+        "name": "Orc Ear"
+    },
+    "390": {
+        "id": "390",
+        "name": "Metal Part"
+    },
+    "391": {
+        "id": "391",
+        "name": "Crane"
+    },
+    "392": {
+        "id": "392",
+        "name": "Green Crystal"
+    },
+    "393": {
+        "id": "393",
+        "name": "Imp Stings"
+    },
+    "394": {
+        "id": "394",
+        "name": "Handcuff"
+    },
+    "395": {
+        "id": "395",
+        "name": "Twin Horn"
+    },
+    "396": {
+        "id": "396",
+        "name": "Vine Tentacle"
+    },
+    "397": {
+        "id": "397",
+        "name": "Robot Chain"
+    },
+    "398": {
+        "id": "398",
+        "name": "Monster Flesh"
+    },
+    "399": {
+        "id": "399",
+        "name": "Old Treasure Map"
+    },
+    "400": {
+        "id": "400",
+        "name": "Aztec Crown"
+    },
+    "401": {
+        "id": "401",
+        "name": "Ancient Scroll"
+    },
+    "402": {
+        "id": "402",
+        "name": "Dragon Claw"
+    },
+    "403": {
+        "id": "403",
+        "name": "Dragon Wing"
+    },
+    "404": {
+        "id": "404",
+        "name": "Dead Flies"
+    },
+    "405": {
+        "id": "405",
+        "name": "Ancient Bone"
+    },
+    "406": {
+        "id": "406",
+        "name": "Viper Eye"
+    },
+    "407": {
+        "id": "407",
+        "name": "Aqua Hand"
+    },
+    "408": {
+        "id": "408",
+        "name": "Fish"
+    },
+    "409": {
+        "id": "409",
+        "name": "Ape Fur"
+    },
+    "410": {
+        "id": "410",
+        "name": "Tenba Bag"
+    },
+    "411": {
+        "id": "411",
+        "name": "Spring"
+    },
+    "412": {
+        "id": "412",
+        "name": "Pencil"
+    },
+    "413": {
+        "id": "413",
+        "name": "Flowies"
+    },
+    "414": {
+        "id": "414",
+        "name": "Borg Metal"
+    },
+    "415": {
+        "id": "415",
+        "name": "Piggy"
+    },
+    "416": {
+        "id": "416",
+        "name": "Eaten Boots"
+    },
+    "417": {
+        "id": "417",
+        "name": "Peasant Bread"
+    },
+    "419": {
+        "id": "419",
+        "name": "Love Letter"
+    },
+    "420": {
+        "id": "420",
+        "name": "Flower Bouquet"
+    },
+    "421": {
+        "id": "421",
+        "name": "Blob Slime"
+    },
+    "422": {
+        "id": "422",
+        "name": "Blue Blob"
+    },
+    "423": {
+        "id": "423",
+        "name": "Red Blob"
+    },
+    "424": {
+        "id": "424",
+        "name": "Purple Blob"
+    },
+    "425": {
+        "id": "425",
+        "name": "Pink Blob"
+    },
+    "426": {
+        "id": "426",
+        "name": "Yellow Blob"
+    },
+    "427": {
+        "id": "427",
+        "name": "Navy Blob"
+    },
+    "428": {
+        "id": "428",
+        "name": "Green Blob"
+    },
+    "429": {
+        "id": "429",
+        "name": "O-Marker"
+    },
+    "430": {
+        "id": "430",
+        "name": "X-Marker"
+    },
+    "431": {
+        "id": "431",
+        "name": "Boat Ticket"
+    },
+    "432": {
+        "id": "432",
+        "name": "Air Ticket"
+    },
+    "433": {
+        "id": "433",
+        "name": "Delivery Receipt"
+    },
+    "434": {
+        "id": "434",
+        "name": "Orcy's Pacy"
+    },
+    "435": {
+        "id": "435",
+        "name": "Toy Car"
+    },
+    "436": {
+        "id": "436",
+        "name": "Toy Car Frame"
+    },
+    "437": {
+        "id": "437",
+        "name": "Toy Car Wheel"
+    },
+    "438": {
+        "id": "438",
+        "name": "Teensy Meat"
+    },
+    "439": {
+        "id": "439",
+        "name": "Crab Meat"
+    },
+    "440": {
+        "id": "440",
+        "name": "Crab Scale"
+    },
+    "441": {
+        "id": "441",
+        "name": "Baby Turtle"
+    },
+    "442": {
+        "id": "442",
+        "name": "Crystal Of Change"
+    },
+    "443": {
+        "id": "443",
+        "name": "Corrupt Shadow Core"
+    },
+    "444": {
+        "id": "444",
+        "name": "Corrupt Aqua Core"
+    },
+    "445": {
+        "id": "445",
+        "name": "Corrupt Phoenix Core"
+    },
+    "446": {
+        "id": "446",
+        "name": "Corrupt Res"
+    },
+    "447": {
+        "id": "447",
+        "name": "Corrupt Res"
+    },
+    "448": {
+        "id": "448",
+        "name": "Corrupt Res"
+    },
+    "503": {
+        "id": "503",
+        "name": "Amulet Of Bravery"
+    },
+    "504": {
+        "id": "504",
+        "name": "Mr. Ed"
+    },
+    "508": {
+        "id": "508",
+        "name": "Broken Dagger"
+    },
+    "509": {
+        "id": "509",
+        "name": "Dagger"
+    },
+    "510": {
+        "id": "510",
+        "name": "Aeven Sword"
+    },
+    "511": {
+        "id": "511",
+        "name": "Shadow Sword"
+    },
+    "526": {
+        "id": "526",
+        "name": "Dagger"
+    },
+    "527": {
+        "id": "527",
+        "name": "Small Sword"
+    },
+    "528": {
+        "id": "528",
+        "name": "Broadsword"
+    },
+    "529": {
+        "id": "529",
+        "name": "Defender"
+    },
+    "530": {
+        "id": "530",
+        "name": "Slayer Sword"
+    },
+    "531": {
+        "id": "531",
+        "name": "Butcher Sword"
+    },
+    "537": {
+        "id": "537",
+        "name": "Green Sword"
+    },
+    "538": {
+        "id": "538",
+        "name": "Lotus Sword"
+    },
+    "539": {
+        "id": "539",
+        "name": "Rapier"
+    },
+    "540": {
+        "id": "540",
+        "name": "Saber"
+    },
+    "541": {
+        "id": "541",
+        "name": "Ancient Sword"
+    },
+    "542": {
+        "id": "542",
+        "name": "Light Katana"
+    },
+    "543": {
+        "id": "543",
+        "name": "Dark Katana"
+    },
+    "544": {
+        "id": "544",
+        "name": "Small Edge"
+    },
+    "545": {
+        "id": "545",
+        "name": "Sharp Edge"
+    },
+    "546": {
+        "id": "546",
+        "name": "Kontra Edge"
+    },
+    "547": {
+        "id": "547",
+        "name": "Killer Edge"
+    },
+    "548": {
+        "id": "548",
+        "name": "Force Dagger"
+    },
+    "549": {
+        "id": "549",
+        "name": "Ice Blade"
+    },
+    "550": {
+        "id": "550",
+        "name": "Cristal Sword"
+    },
+    "551": {
+        "id": "551",
+        "name": "Neon Sword"
+    },
+    "552": {
+        "id": "552",
+        "name": "Dark Blade"
+    },
+    "553": {
+        "id": "553",
+        "name": "Saw Sword"
+    },
+    "554": {
+        "id": "554",
+        "name": "Dragon Blade"
+    },
+    "555": {
+        "id": "555",
+        "name": "Ultima Blade"
+    },
+    "556": {
+        "id": "556",
+        "name": "Twin Blade"
+    },
+    "557": {
+        "id": "557",
+        "name": "Dragon Twin Blade"
+    },
+    "569": {
+        "id": "569",
+        "name": "Spear"
+    },
+    "570": {
+        "id": "570",
+        "name": "Jack Spear"
+    },
+    "571": {
+        "id": "571",
+        "name": "Battle Spear"
+    },
+    "572": {
+        "id": "572",
+        "name": "Ancient Spear"
+    },
+    "573": {
+        "id": "573",
+        "name": "Lance"
+    },
+    "574": {
+        "id": "574",
+        "name": "Magical Trident"
+    },
+    "575": {
+        "id": "575",
+        "name": "Reaper"
+    },
+    "576": {
+        "id": "576",
+        "name": "Reaper Scyth"
+    },
+    "577": {
+        "id": "577",
+        "name": "Pole Arm"
+    },
+    "578": {
+        "id": "578",
+        "name": "Broom"
+    },
+    "579": {
+        "id": "579",
+        "name": "Hockey Stick"
+    },
+    "581": {
+        "id": "581",
+        "name": "Aeven Staff"
+    },
+    "582": {
+        "id": "582",
+        "name": "Phoenix Staff"
+    },
+    "583": {
+        "id": "583",
+        "name": "Aura Staff"
+    },
+    "584": {
+        "id": "584",
+        "name": "Luna Staff"
+    },
+    "585": {
+        "id": "585",
+        "name": "Jewel Staff"
+    },
+    "586": {
+        "id": "586",
+        "name": "Cresent Staff"
+    },
+    "587": {
+        "id": "587",
+        "name": "Cava Staff"
+    },
+    "588": {
+        "id": "588",
+        "name": "Knob Staff"
+    },
+    "589": {
+        "id": "589",
+        "name": "Owl Staff"
+    },
+    "590": {
+        "id": "590",
+        "name": "Fanblade Staff"
+    },
+    "591": {
+        "id": "591",
+        "name": "Lens Of Truth"
+    },
+    "592": {
+        "id": "592",
+        "name": "Demon Staff"
+    },
+    "606": {
+        "id": "606",
+        "name": "Small Axe"
+    },
+    "607": {
+        "id": "607",
+        "name": "Big Axe"
+    },
+    "608": {
+        "id": "608",
+        "name": "Throw Axe"
+    },
+    "609": {
+        "id": "609",
+        "name": "Battle Axe"
+    },
+    "610": {
+        "id": "610",
+        "name": "War Axe"
+    },
+    "611": {
+        "id": "611",
+        "name": "Merhawk"
+    },
+    "615": {
+        "id": "615",
+        "name": "Old Choppy"
+    },
+    "616": {
+        "id": "616",
+        "name": "Wood Axe"
+    },
+    "621": {
+        "id": "621",
+        "name": "Rusty Diggy"
+    },
+    "622": {
+        "id": "622",
+        "name": "Mine Pick"
+    },
+    "627": {
+        "id": "627",
+        "name": "Farm Sickle"
+    },
+    "628": {
+        "id": "628",
+        "name": "Sai"
+    },
+    "645": {
+        "id": "645",
+        "name": "Spirit Star"
+    },
+    "646": {
+        "id": "646",
+        "name": "Ancient Star"
+    },
+    "647": {
+        "id": "647",
+        "name": "Ninchackus"
+    },
+    "648": {
+        "id": "648",
+        "name": "Fan Fan"
+    },
+    "649": {
+        "id": "649",
+        "name": "Whip"
+    },
+    "650": {
+        "id": "650",
+        "name": "Flail"
+    },
+    "651": {
+        "id": "651",
+        "name": "Chains"
+    },
+    "652": {
+        "id": "652",
+        "name": "Bad Mace"
+    },
+    "653": {
+        "id": "653",
+        "name": "Barbed Mace"
+    },
+    "654": {
+        "id": "654",
+        "name": "Big Hammer"
+    },
+    "658": {
+        "id": "658",
+        "name": "Holy Book"
+    },
+    "659": {
+        "id": "659",
+        "name": "Harp"
+    },
+    "660": {
+        "id": "660",
+        "name": "Guitar"
+    },
+    "668": {
+        "id": "668",
+        "name": "Aeven Small Bow"
+    },
+    "669": {
+        "id": "669",
+        "name": "Octem Crossbow"
+    },
+    "670": {
+        "id": "670",
+        "name": "Bow"
+    },
+    "671": {
+        "id": "671",
+        "name": "Long Bow"
+    },
+    "673": {
+        "id": "673",
+        "name": "Crossbow"
+    },
+    "674": {
+        "id": "674",
+        "name": "Compound"
+    },
+    "676": {
+        "id": "676",
+        "name": "Bb Gun"
+    },
+    "677": {
+        "id": "677",
+        "name": "Gun"
+    },
+    "701": {
+        "id": "701",
+        "name": "Broken Shield"
+    },
+    "702": {
+        "id": "702",
+        "name": "Aeven Shield"
+    },
+    "703": {
+        "id": "703",
+        "name": "Round Shield"
+    },
+    "704": {
+        "id": "704",
+        "name": "Shadow Protector"
+    },
+    "717": {
+        "id": "717",
+        "name": "Small Shield"
+    },
+    "718": {
+        "id": "718",
+        "name": "Blue Shield"
+    },
+    "719": {
+        "id": "719",
+        "name": "Dark Shield"
+    },
+    "720": {
+        "id": "720",
+        "name": "Hickory"
+    },
+    "721": {
+        "id": "721",
+        "name": "Royal Protector"
+    },
+    "722": {
+        "id": "722",
+        "name": "Lotus Protector"
+    },
+    "723": {
+        "id": "723",
+        "name": "Razor Shield"
+    },
+    "724": {
+        "id": "724",
+        "name": "Wooden Protector"
+    },
+    "725": {
+        "id": "725",
+        "name": "Oak Shield"
+    },
+    "726": {
+        "id": "726",
+        "name": "Guard Shield"
+    },
+    "727": {
+        "id": "727",
+        "name": "Kite Shield"
+    },
+    "728": {
+        "id": "728",
+        "name": "Dark Protector"
+    },
+    "740": {
+        "id": "740",
+        "name": "Normal Arrows"
+    },
+    "741": {
+        "id": "741",
+        "name": "Frost Arrows"
+    },
+    "742": {
+        "id": "742",
+        "name": "Fire Arrows"
+    },
+    "754": {
+        "id": "754",
+        "name": "Bag"
+    },
+    "755": {
+        "id": "755",
+        "name": "Good Wings"
+    },
+    "756": {
+        "id": "756",
+        "name": "Good Force Wings"
+    },
+    "757": {
+        "id": "757",
+        "name": "Fire Force Wings"
+    },
+    "785": {
+        "id": "785",
+        "name": "Blue Boots"
+    },
+    "786": {
+        "id": "786",
+        "name": "Blue Boots"
+    },
+    "787": {
+        "id": "787",
+        "name": "Blue Boots"
+    },
+    "788": {
+        "id": "788",
+        "name": "Brown Boots"
+    },
+    "789": {
+        "id": "789",
+        "name": "Brown Boots"
+    },
+    "790": {
+        "id": "790",
+        "name": "Brown Boots"
+    },
+    "791": {
+        "id": "791",
+        "name": "Red Boots"
+    },
+    "792": {
+        "id": "792",
+        "name": "Red Boots"
+    },
+    "793": {
+        "id": "793",
+        "name": "Red Boots"
+    },
+    "794": {
+        "id": "794",
+        "name": "Purple Boots"
+    },
+    "795": {
+        "id": "795",
+        "name": "Purple Boots"
+    },
+    "796": {
+        "id": "796",
+        "name": "Purple Boots"
+    },
+    "797": {
+        "id": "797",
+        "name": "Pink Boots"
+    },
+    "798": {
+        "id": "798",
+        "name": "Green Boots"
+    },
+    "799": {
+        "id": "799",
+        "name": "Green Boots"
+    },
+    "800": {
+        "id": "800",
+        "name": "Green Boots"
+    },
+    "801": {
+        "id": "801",
+        "name": "Yellow Boots"
+    },
+    "802": {
+        "id": "802",
+        "name": "Orange Boots"
+    },
+    "803": {
+        "id": "803",
+        "name": "Oker Boots"
+    },
+    "804": {
+        "id": "804",
+        "name": "White Boots"
+    },
+    "805": {
+        "id": "805",
+        "name": "Black Boots"
+    },
+    "806": {
+        "id": "806",
+        "name": "Dark Boots"
+    },
+    "807": {
+        "id": "807",
+        "name": "Grey Boots"
+    },
+    "808": {
+        "id": "808",
+        "name": "Blue Sandals"
+    },
+    "809": {
+        "id": "809",
+        "name": "Blue Sandals"
+    },
+    "810": {
+        "id": "810",
+        "name": "Blue Sandals"
+    },
+    "811": {
+        "id": "811",
+        "name": "Brown Sandals"
+    },
+    "812": {
+        "id": "812",
+        "name": "Brown Sandals"
+    },
+    "813": {
+        "id": "813",
+        "name": "Brown Sandals"
+    },
+    "814": {
+        "id": "814",
+        "name": "Red Sandals"
+    },
+    "815": {
+        "id": "815",
+        "name": "Red Sandals"
+    },
+    "816": {
+        "id": "816",
+        "name": "Red Sandals"
+    },
+    "817": {
+        "id": "817",
+        "name": "Purple Sandals"
+    },
+    "818": {
+        "id": "818",
+        "name": "Purple Sandals"
+    },
+    "819": {
+        "id": "819",
+        "name": "Purple Sandals"
+    },
+    "820": {
+        "id": "820",
+        "name": "Pink Sandals"
+    },
+    "821": {
+        "id": "821",
+        "name": "Green Sandals"
+    },
+    "822": {
+        "id": "822",
+        "name": "Green Sandals"
+    },
+    "823": {
+        "id": "823",
+        "name": "Green Sandals"
+    },
+    "824": {
+        "id": "824",
+        "name": "Yellow Sandals"
+    },
+    "825": {
+        "id": "825",
+        "name": "Orange Sandals"
+    },
+    "826": {
+        "id": "826",
+        "name": "Oker Sandals"
+    },
+    "827": {
+        "id": "827",
+        "name": "White Sandals"
+    },
+    "828": {
+        "id": "828",
+        "name": "Black Sandals"
+    },
+    "829": {
+        "id": "829",
+        "name": "Dark Sandals"
+    },
+    "830": {
+        "id": "830",
+        "name": "Grey Sandals"
+    },
+    "831": {
+        "id": "831",
+        "name": "Red Enchanted Boots"
+    },
+    "832": {
+        "id": "832",
+        "name": "Green Enchanted Boots"
+    },
+    "833": {
+        "id": "833",
+        "name": "Blue Enchanted Boots"
+    },
+    "834": {
+        "id": "834",
+        "name": "Royal Boots"
+    },
+    "835": {
+        "id": "835",
+        "name": "Ancient Boots"
+    },
+    "836": {
+        "id": "836",
+        "name": "Steel Boots"
+    },
+    "851": {
+        "id": "851",
+        "name": "Peasant Suit"
+    },
+    "852": {
+        "id": "852",
+        "name": "Peasant Clothes"
+    },
+    "853": {
+        "id": "853",
+        "name": "Cave Robes"
+    },
+    "854": {
+        "id": "854",
+        "name": "Thief clothes"
+    },
+    "855": {
+        "id": "855",
+        "name": "Sweater"
+    },
+    "856": {
+        "id": "856",
+        "name": "Dark Robes"
+    },
+    "857": {
+        "id": "857",
+        "name": "Tuxido"
+    },
+    "858": {
+        "id": "858",
+        "name": "Casual Dress"
+    },
+    "859": {
+        "id": "859",
+        "name": "Grey Dress"
+    },
+    "860": {
+        "id": "860",
+        "name": "White Dress"
+    },
+    "861": {
+        "id": "861",
+        "name": "Red Dress"
+    },
+    "862": {
+        "id": "862",
+        "name": "Frella"
+    },
+    "863": {
+        "id": "863",
+        "name": "Dark Robes"
+    },
+    "864": {
+        "id": "864",
+        "name": "Frello"
+    },
+    "865": {
+        "id": "865",
+        "name": "Forrest Robes"
+    },
+    "866": {
+        "id": "866",
+        "name": "White Robes"
+    },
+    "872": {
+        "id": "872",
+        "name": "Soldier Plate"
+    },
+    "873": {
+        "id": "873",
+        "name": "Swordman Armor"
+    },
+    "874": {
+        "id": "874",
+        "name": "Cleric Custome"
+    },
+    "877": {
+        "id": "877",
+        "name": "Burk Pants"
+    },
+    "878": {
+        "id": "878",
+        "name": "Monk Pants"
+    },
+    "885": {
+        "id": "885",
+        "name": "Swift Suit"
+    },
+    "886": {
+        "id": "886",
+        "name": "Swift Armor"
+    },
+    "887": {
+        "id": "887",
+        "name": "Gold Plate"
+    },
+    "888": {
+        "id": "888",
+        "name": "Mystic Dress"
+    },
+    "889": {
+        "id": "889",
+        "name": "Gothic Dress"
+    },
+    "890": {
+        "id": "890",
+        "name": "Royal Dress"
+    },
+    "891": {
+        "id": "891",
+        "name": "White Robes"
+    },
+    "905": {
+        "id": "905",
+        "name": "Oblon Armor"
+    },
+    "906": {
+        "id": "906",
+        "name": "Holy Robes"
+    },
+    "907": {
+        "id": "907",
+        "name": "Holy Robes"
+    },
+    "909": {
+        "id": "909",
+        "name": "Cardinal Robes"
+    },
+    "911": {
+        "id": "911",
+        "name": "Robe of Sanctum"
+    },
+    "912": {
+        "id": "912",
+        "name": "Ninja Dress"
+    },
+    "913": {
+        "id": "913",
+        "name": "Ninja Suit"
+    },
+    "914": {
+        "id": "914",
+        "name": "Dresca Wear"
+    },
+    "915": {
+        "id": "915",
+        "name": "Dragon Wear"
+    },
+    "916": {
+        "id": "916",
+        "name": "Light Battle Plate"
+    },
+    "917": {
+        "id": "917",
+        "name": "Light Battle Plate"
+    },
+    "918": {
+        "id": "918",
+        "name": "Battle Plate"
+    },
+    "919": {
+        "id": "919",
+        "name": "Battle Plate"
+    },
+    "920": {
+        "id": "920",
+        "name": "Heavy Battle Plate"
+    },
+    "921": {
+        "id": "921",
+        "name": "Heavy Battle Plate"
+    },
+    "922": {
+        "id": "922",
+        "name": "Rogue Dress"
+    },
+    "923": {
+        "id": "923",
+        "name": "Rogue Cloak"
+    },
+    "924": {
+        "id": "924",
+        "name": "Wizzard Robes"
+    },
+    "925": {
+        "id": "925",
+        "name": "Wizzard Robes"
+    },
+    "926": {
+        "id": "926",
+        "name": "Red Plate"
+    },
+    "927": {
+        "id": "927",
+        "name": "Red Plate"
+    },
+    "928": {
+        "id": "928",
+        "name": "Heavy Pants"
+    },
+    "929": {
+        "id": "929",
+        "name": "Tennu"
+    },
+    "930": {
+        "id": "930",
+        "name": "Royal Dress"
+    },
+    "931": {
+        "id": "931",
+        "name": "Royal Suit"
+    },
+    "932": {
+        "id": "932",
+        "name": "Lotus Armor"
+    },
+    "933": {
+        "id": "933",
+        "name": "Lotus Armor"
+    },
+    "934": {
+        "id": "934",
+        "name": "Archery Armor"
+    },
+    "935": {
+        "id": "935",
+        "name": "Archery Armor"
+    },
+    "936": {
+        "id": "936",
+        "name": "Soccery Armor"
+    },
+    "937": {
+        "id": "937",
+        "name": "Soccery Armor"
+    },
+    "938": {
+        "id": "938",
+        "name": "Ancient Plate"
+    },
+    "939": {
+        "id": "939",
+        "name": "Ancient Plate"
+    },
+    "940": {
+        "id": "940",
+        "name": "Galoya"
+    },
+    "941": {
+        "id": "941",
+        "name": "Galoy"
+    },
+    "942": {
+        "id": "942",
+        "name": "Baruta"
+    },
+    "943": {
+        "id": "943",
+        "name": "Baru"
+    },
+    "944": {
+        "id": "944",
+        "name": "Dracota"
+    },
+    "945": {
+        "id": "945",
+        "name": "Draco"
+    },
+    "946": {
+        "id": "946",
+        "name": "Buccanee"
+    },
+    "947": {
+        "id": "947",
+        "name": "Buccanee"
+    },
+    "948": {
+        "id": "948",
+        "name": "Crusader Armor"
+    },
+    "949": {
+        "id": "949",
+        "name": "Crusader Armor"
+    },
+    "950": {
+        "id": "950",
+        "name": "Orona Suit"
+    },
+    "951": {
+        "id": "951",
+        "name": "Oron"
+    },
+    "952": {
+        "id": "952",
+        "name": "Eleganta"
+    },
+    "953": {
+        "id": "953",
+        "name": "Elegant"
+    },
+    "954": {
+        "id": "954",
+        "name": "Ketovu"
+    },
+    "955": {
+        "id": "955",
+        "name": "Ketova"
+    },
+    "956": {
+        "id": "956",
+        "name": "Eloffe"
+    },
+    "957": {
+        "id": "957",
+        "name": "Eloff"
+    },
+    "958": {
+        "id": "958",
+        "name": "Heavy Eloffe"
+    },
+    "959": {
+        "id": "959",
+        "name": "Heavy Eloff"
+    },
+    "960": {
+        "id": "960",
+        "name": "Tebaru"
+    },
+    "961": {
+        "id": "961",
+        "name": "Tebar"
+    },
+    "962": {
+        "id": "962",
+        "name": "Dragon Armor"
+    },
+    "963": {
+        "id": "963",
+        "name": "Dragon Armor"
+    },
+    "964": {
+        "id": "964",
+        "name": "Hero Plate"
+    },
+    "965": {
+        "id": "965",
+        "name": "Hero Plate"
+    },
+    "966": {
+        "id": "966",
+        "name": "Dark Endura"
+    },
+    "967": {
+        "id": "967",
+        "name": "Dark Endur"
+    },
+    "968": {
+        "id": "968",
+        "name": "Elder Robes"
+    },
+    "969": {
+        "id": "969",
+        "name": "Elder Robes"
+    },
+    "989": {
+        "id": "989",
+        "name": "Turtle Costume"
+    },
+    "990": {
+        "id": "990",
+        "name": "Panda Costume"
+    },
+    "991": {
+        "id": "991",
+        "name": "Devil Costume"
+    },
+    "992": {
+        "id": "992",
+        "name": "Devil Costume"
+    },
+    "993": {
+        "id": "993",
+        "name": "Kimono"
+    },
+    "994": {
+        "id": "994",
+        "name": "School uniform"
+    },
+    "995": {
+        "id": "995",
+        "name": "School Costume"
+    },
+    "996": {
+        "id": "996",
+        "name": "Hula Hula Pants"
+    },
+    "997": {
+        "id": "997",
+        "name": "Hula Hula Skirt"
+    },
+    "998": {
+        "id": "998",
+        "name": "Docter Outfit"
+    },
+    "999": {
+        "id": "999",
+        "name": "Nurse Outfit"
+    },
+    "1000": {
+        "id": "1000",
+        "name": "Cooks Uniform"
+    },
+    "1001": {
+        "id": "1001",
+        "name": "Cooks Uniform"
+    },
+    "1044": {
+        "id": "1044",
+        "name": "Blue Magical Hat"
+    },
+    "1045": {
+        "id": "1045",
+        "name": "Black Magical Hat"
+    },
+    "1046": {
+        "id": "1046",
+        "name": "Purple Magical Hat"
+    },
+    "1047": {
+        "id": "1047",
+        "name": "Blue Enchanted Hat"
+    },
+    "1048": {
+        "id": "1048",
+        "name": "Black Enchanted Hat"
+    },
+    "1049": {
+        "id": "1049",
+        "name": "Purple Enchanted Hat"
+    },
+    "1050": {
+        "id": "1050",
+        "name": "Flad Hat"
+    },
+    "1051": {
+        "id": "1051",
+        "name": "Horned Hat"
+    },
+    "1052": {
+        "id": "1052",
+        "name": "Chainmail Hat"
+    },
+    "1053": {
+        "id": "1053",
+        "name": "Fairy Hat"
+    },
+    "1054": {
+        "id": "1054",
+        "name": "Bandana"
+    },
+    "1055": {
+        "id": "1055",
+        "name": "Bandana"
+    },
+    "1056": {
+        "id": "1056",
+        "name": "Bandana"
+    },
+    "1057": {
+        "id": "1057",
+        "name": "Bandana"
+    },
+    "1058": {
+        "id": "1058",
+        "name": "Bandana"
+    },
+    "1059": {
+        "id": "1059",
+        "name": "Mystic Hat"
+    },
+    "1060": {
+        "id": "1060",
+        "name": "Black Hood"
+    },
+    "1061": {
+        "id": "1061",
+        "name": "Brown Hood"
+    },
+    "1062": {
+        "id": "1062",
+        "name": "Blue Hood"
+    },
+    "1063": {
+        "id": "1063",
+        "name": "Green Hood"
+    },
+    "1064": {
+        "id": "1064",
+        "name": "Red Hood"
+    },
+    "1065": {
+        "id": "1065",
+        "name": "Scarf"
+    },
+    "1066": {
+        "id": "1066",
+        "name": "Scarf"
+    },
+    "1067": {
+        "id": "1067",
+        "name": "Scarf"
+    },
+    "1068": {
+        "id": "1068",
+        "name": "Glasses"
+    },
+    "1069": {
+        "id": "1069",
+        "name": "Pilotte"
+    },
+    "1070": {
+        "id": "1070",
+        "name": "Chappy"
+    },
+    "1071": {
+        "id": "1071",
+        "name": "Elegant Hat"
+    },
+    "1072": {
+        "id": "1072",
+        "name": "Pirate Hat"
+    },
+    "1073": {
+        "id": "1073",
+        "name": "Captain Hat"
+    },
+    "1074": {
+        "id": "1074",
+        "name": "Samurai Hat"
+    },
+    "1075": {
+        "id": "1075",
+        "name": "Dragon Mask"
+    },
+    "1076": {
+        "id": "1076",
+        "name": "Merchant Hat"
+    },
+    "1077": {
+        "id": "1077",
+        "name": "Crown"
+    },
+    "1078": {
+        "id": "1078",
+        "name": "Helmy"
+    },
+    "1079": {
+        "id": "1079",
+        "name": "Beruta"
+    },
+    "1080": {
+        "id": "1080",
+        "name": "Lotus Helmet"
+    },
+    "1081": {
+        "id": "1081",
+        "name": "Eloff Helmet"
+    },
+    "1082": {
+        "id": "1082",
+        "name": "Air hat"
+    },
+    "1083": {
+        "id": "1083",
+        "name": "Gob Helm"
+    },
+    "1084": {
+        "id": "1084",
+        "name": "Horned Gob Helm"
+    },
+    "1085": {
+        "id": "1085",
+        "name": "Demon Helmet"
+    },
+    "1086": {
+        "id": "1086",
+        "name": "Frog Head"
+    },
+    "1087": {
+        "id": "1087",
+        "name": "Pink Samurai"
+    },
+    "1101": {
+        "id": "1101",
+        "name": "Christmas Hat"
+    },
+    "1102": {
+        "id": "1102",
+        "name": "White sumurai"
+    },
+    "1103": {
+        "id": "1103",
+        "name": "Kitty Hat"
+    },
+    "1104": {
+        "id": "1104",
+        "name": "Hula Hula Hat"
+    },
+    "1105": {
+        "id": "1105",
+        "name": "Medic Cap"
+    },
+    "1106": {
+        "id": "1106",
+        "name": "Cook Hat"
+    },
+    "1107": {
+        "id": "1107",
+        "name": "Hat of wonders"
+    },
+    "1142": {
+        "id": "1142",
+        "name": "Aeven Gloves"
+    },
+    "1143": {
+        "id": "1143",
+        "name": "Skylar Gloves"
+    },
+    "1156": {
+        "id": "1156",
+        "name": "Leather Gloves"
+    },
+    "1157": {
+        "id": "1157",
+        "name": "Leather Gloves"
+    },
+    "1158": {
+        "id": "1158",
+        "name": "Iron Gloves"
+    },
+    "1159": {
+        "id": "1159",
+        "name": "Death Gloves"
+    },
+    "1186": {
+        "id": "1186",
+        "name": "Water Crystal"
+    },
+    "1187": {
+        "id": "1187",
+        "name": "Earth Crystal"
+    },
+    "1188": {
+        "id": "1188",
+        "name": "Forest Crystal"
+    },
+    "1189": {
+        "id": "1189",
+        "name": "Element Crystal"
+    },
+    "1190": {
+        "id": "1190",
+        "name": "Eternal Crystal"
+    },
+    "1191": {
+        "id": "1191",
+        "name": "Air Crystal"
+    },
+    "1192": {
+        "id": "1192",
+        "name": "Fire Crystal"
+    },
+    "1193": {
+        "id": "1193",
+        "name": "Dark Crystal"
+    },
+    "1194": {
+        "id": "1194",
+        "name": "Light Crystal"
+    },
+    "1196": {
+        "id": "1196",
+        "name": "Yellow Gem"
+    },
+    "1197": {
+        "id": "1197",
+        "name": "Blue Gem"
+    },
+    "1198": {
+        "id": "1198",
+        "name": "Purple Gem"
+    },
+    "1199": {
+        "id": "1199",
+        "name": "Pink Gem"
+    },
+    "1200": {
+        "id": "1200",
+        "name": "Red Gem"
+    },
+    "1201": {
+        "id": "1201",
+        "name": "Orange Gem"
+    },
+    "1202": {
+        "id": "1202",
+        "name": "Luna Gem"
+    },
+    "1203": {
+        "id": "1203",
+        "name": "Green Gem"
+    },
+    "1204": {
+        "id": "1204",
+        "name": "Dark Gem"
+    },
+    "1205": {
+        "id": "1205",
+        "name": "Magic Charm"
+    },
+    "1206": {
+        "id": "1206",
+        "name": "Guardian Charm"
+    },
+    "1207": {
+        "id": "1207",
+        "name": "War Charm"
+    },
+    "1215": {
+        "id": "1215",
+        "name": "Aeven Belt"
+    },
+    "1216": {
+        "id": "1216",
+        "name": "Skylar Belt"
+    },
+    "1230": {
+        "id": "1230",
+        "name": "Leather Belt"
+    },
+    "1231": {
+        "id": "1231",
+        "name": "Skull Belt"
+    },
+    "1244": {
+        "id": "1244",
+        "name": "Aeven Necklace"
+    },
+    "1245": {
+        "id": "1245",
+        "name": "Crow Claw Necklace"
+    },
+    "1246": {
+        "id": "1246",
+        "name": "Tribal Necklace"
+    },
+    "1258": {
+        "id": "1258",
+        "name": "Emerald Necklace"
+    },
+    "1259": {
+        "id": "1259",
+        "name": "Necro Necklace"
+    },
+    "1273": {
+        "id": "1273",
+        "name": "Aeven Ring"
+    },
+    "1274": {
+        "id": "1274",
+        "name": "Love Ring"
+    },
+    "1275": {
+        "id": "1275",
+        "name": "Tribal Ring"
+    },
+    "1287": {
+        "id": "1287",
+        "name": "Broken Ring"
+    },
+    "1288": {
+        "id": "1288",
+        "name": "Silver Ring"
+    },
+    "1289": {
+        "id": "1289",
+        "name": "Golden Ring"
+    },
+    "1302": {
+        "id": "1302",
+        "name": "Aeven Bracelet"
+    },
+    "1303": {
+        "id": "1303",
+        "name": "Tribal Bracelet"
+    },
+    "1316": {
+        "id": "1316",
+        "name": "Silver Elf Braclet"
+    },
+    "1317": {
+        "id": "1317",
+        "name": "Golden Elf Braclet"
+    },
+    "1331": {
+        "id": "1331",
+        "name": "Aeven Bracer"
+    },
+    "1332": {
+        "id": "1332",
+        "name": "Tribal Bracer"
+    },
+    "1345": {
+        "id": "1345",
+        "name": "Leather Bracer"
+    },
+    "1374": {
+        "id": "1374",
+        "name": "Human Melt"
+    },
+    "1375": {
+        "id": "1375",
+        "name": "Human Tan Melt"
+    },
+    "1376": {
+        "id": "1376",
+        "name": "Human Dark Melt"
+    },
+    "1377": {
+        "id": "1377",
+        "name": "Human Ori Melt"
+    },
+    "1378": {
+        "id": "1378",
+        "name": "Cyborg Melt"
+    },
+    "1379": {
+        "id": "1379",
+        "name": "Orc Melt"
+    },
+    "1380": {
+        "id": "1380",
+        "name": "Undead Melt"
+    },
+    "1381": {
+        "id": "1381",
+        "name": "Panda Melt"
+    },
+    "1382": {
+        "id": "1382",
+        "name": "Fish Melt"
+    },
+    "1383": {
+        "id": "1383",
+        "name": "Atlantis Melt"
+    },
+    "1384": {
+        "id": "1384",
+        "name": "Reptile Melt"
+    },
+    "1385": {
+        "id": "1385",
+        "name": "Squirrel Melt"
+    },
+    "1386": {
+        "id": "1386",
+        "name": "Bird Melt"
+    },
+    "1387": {
+        "id": "1387",
+        "name": "Blue Devil Melt"
+    },
+    "1388": {
+        "id": "1388",
+        "name": "Red Devil Melt"
+    },
+    "1389": {
+        "id": "1389",
+        "name": "Dark Devil Melt"
+    },
+    "1393": {
+        "id": "1393",
+        "name": "Shrink Key"
+    },
+    "1394": {
+        "id": "1394",
+        "name": "Silver Key"
+    },
+    "1395": {
+        "id": "1395",
+        "name": "Crystal Key"
+    },
+    "1396": {
+        "id": "1396",
+        "name": "Wraith Key"
+    },
+    "1403": {
+        "id": "1403",
+        "name": "Small Heal"
+    },
+    "1407": {
+        "id": "1407",
+        "name": "Cats"
+    },
+    "1408": {
+        "id": "1408",
+        "name": "Bird"
+    },
+    "1409": {
+        "id": "1409",
+        "name": "Snake"
+    },
+    "1430": {
+        "id": "1430",
+        "name": "Berry handguide"
+    },
+    "1431": {
+        "id": "1431",
+        "name": "Lost Flyer"
+    },
+    "1432": {
+        "id": "1432",
+        "name": "Bob Poster"
+    },
+    "1449": {
+        "id": "1449",
+        "name": "EO Celebration"
+    }
+}

@@ -10,9 +10,107 @@ require_once('src/ServerSocket.class.php');
 require_once('src/CommandHandler.class.php');
 require_once('src/PacketHandler.class.php');
 
-class LocalMessage extends ChatMessage
+class Trade
 {
-	public $character_id;
+	private $my_items;
+	private $their_items;
+	private $expected_items;
+	private $giving_items;
+	private $last_action;
+	private $eobot;
+	private $partner;
+	private $state;
+	
+	function __construct(&$eobot, $partner)
+	{
+		$this->state = Protocol::TRADE_REQUESTED;
+		$this->eobot = $eobot;
+		$this->partner = $partner;
+		$this->my_items = array();
+		$this->their_items = array();
+		$this->expected_items = array();
+		$this->giving_items = array($this->eobot->GetItemByName("eon")->id => 1);
+		$this->last_action = time();
+	}
+	
+	public function GetPartner() { return $this->partner; }
+	
+	public function GetState() { return $this->state; }
+	
+	public function SetState($new_state) { $this->state = $new_state; }
+	
+	public function ResetTimer() { $this->last_action = time(); }
+	
+	public function Process()
+	{
+		if(time() > $this->last_action + $this->eobot->config->get("Game", "TradeTimeout"))
+		{
+			// time out
+			$this->eobot->CancelTrade();
+			return;
+		}
+		
+		// check if we're waiting for other player to accept our trade request
+		if($this->state <= Protocol::TRADE_REQUESTED)
+			return;
+		
+		// check if we have added all the items we want to give
+		foreach($this->giving_items as $key => $val)
+		{
+			if(isset($this->my_items[$key]))
+			{
+				continue;
+			}
+			// add missing item to trade
+			// TODO: check if we actually have the item in our inventory
+			$this->my_items[$key] = $val;
+			$this->eobot->TradeAddItem($key, $val);
+			return;
+		}
+		
+		// check if partner has given all the items we expect
+		foreach($this->expected_items as $key => $val)
+		{
+			if(isset($this->their_items[$key]))
+			{
+				continue;
+			}
+			// they are missing an item
+			return;
+		}
+		
+		// check if we have agreed
+		if($this->state != Protocol::TRADE_ACCEPTED)
+		{
+			if(time() > $this->last_action + $this->eobot->config->get("Game", "TradeConfirmDelay"))
+			{
+				// make sure other player has given at least 1 item
+				if(count($this->their_items) > 0)
+					$this->eobot->AcceptTrade();				
+			}
+			return;
+		}
+		
+		// everything is ok, waiting on other player to accept
+	}
+	
+	public function SetExpectedItems($items)
+	{
+		$this->expected_items = $items;
+	}
+	
+	public function SetGivingItems($items)
+	{
+		$this->giving_items = $items;
+	}
+	
+	public function TradeChanged($mine, $theirs)
+	{
+		$this->ResetTimer();
+		$this->state = Protocol::TRADE_TRADING;
+		$this->my_items = $mine;
+		$this->their_items = $theirs;
+	}
 }
 
 class EOBot
@@ -42,6 +140,8 @@ class EOBot
 	private $chat_log;
 	private $nearby_characters;
 	public $me;
+	private $items;
+	private $trade;
 	
 	function __construct()
 	{
@@ -55,6 +155,9 @@ class EOBot
 								"Announce" => array(), 
 								"System" => array());
 		$nearby_characters = array();
+		$jsonString = file_get_contents('items.json');
+		$this->items = json_decode($jsonString, true);
+		$this->trade = null;
 
 		echo " 88888888b  .88888.   888888ba             dP   
  88        d8'   `8b  88    `8b            88   
@@ -72,6 +175,175 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 	public function GetState(){ return $this->state; }
 	
 	public function GetPacketProcessor(){ return $this->packet_processor; }
+	
+	public function IsTrading(){
+		if($this->trade === null)
+			return false;
+		
+		return $this->trade->GetState() > Protocol::TRADE_REQUESTED;
+	}
+	
+	public function UpdateTrade($mine, $theirs)
+	{
+		$this->trade->TradeChanged($mine, $theirs);
+	}
+	
+	public function AcceptTradeRequest($partner)
+	{
+		$trade = new Trade($this, $partner);
+		
+		$this->trade = $trade;
+		
+		$pack = "";
+		$pack .= chr(Protocol::A['Accept']);
+		$pack .= chr(Protocol::F['Trade']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger($trade->GetPartner()->id, 2);
+		$this->Send($pack);
+	}
+	
+	public function TradeOpen()
+	{
+		if($this->trade !== null)
+		{
+			$this->trade->SetState(Protocol::TRADE_TRADING);
+		}
+	}
+	
+	public function TradeAddItem($id, $amount)
+	{
+		$pack = "";
+		$pack .= chr(Protocol::A['Add']);
+		$pack .= chr(Protocol::F['Trade']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger($id, 2);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger(0, 1);
+		$pack .= Protocol::EncodeInteger($amount, 4);
+		$this->Send($pack);
+	}
+	
+	public function AcceptTrade()
+	{
+		$this->trade->SetState(Protocol::TRADE_ACCEPTED);
+		$pack = "";
+		$pack .= chr(Protocol::A['Agree']);
+		$pack .= chr(Protocol::F['Trade']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger(1, 1);
+		$this->Send($pack);
+	}
+	
+	public function FinishTrade($item_lost, $items_gained)
+	{
+		// TODO: update inventory
+		
+		if($this->trade !== null)
+		{
+			unset($this->trade);
+			$this->trade = null;
+		}
+	}
+	
+	public function CancelTrade()
+	{
+		if($this->trade->GetState() > Protocol::TRADE_REQUESTED || $this->trade === null)
+		{
+			$pack = "";
+			$pack .= chr(Protocol::A['Close']);
+			$pack .= chr(Protocol::F['Trade']);
+			$next_seq = $this->packet_processor->next_sequence();
+			$pack .= Protocol::EncodeInteger($next_seq);
+			$pack .= Protocol::EncodeInteger(0, 1);
+			$this->Send($pack);
+		}
+		if($this->trade !== null)
+		{
+			unset($this->trade);
+			$this->trade = null;
+		}
+	}
+	
+	public function TradeClosed()
+	{
+		if($this->trade !== null)
+		{
+			unset($this->trade);
+			$this->trade = null;
+		}
+	}
+	
+	public function RequestTrade($character, $expected_items, $giving_items)
+	{
+		if($this->trade !== null)
+			return;
+		
+		$trade = new Trade($this, $character);
+		$trade->SetExpectedItems($expected_items);
+		$trade->SetGivingItems($giving_items);
+		
+		$this->trade = $trade;
+		
+		$pack = "";
+		$pack .= chr(Protocol::A['Request']);
+		$pack .= chr(Protocol::F['Trade']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger(138, 1);
+		$pack .= Protocol::EncodeInteger($character->id, 2);
+		$this->Send($pack);
+	}
+	
+	public function GetItemByName($name)
+	{
+		foreach($this->items as $key => $val)
+		{
+			if(strtolower($this->items[$key]["name"]) == strtolower($name))
+			{
+				$item = new EOItem();
+				$item->id = $key;
+				$item->name = $val["name"];
+				
+				return $item;
+			}
+		}
+		return null;
+	}
+	
+	public function GetItemById($id)
+	{
+		if(isset($this->items[$id]))
+		{
+			$item = new EOItem();
+			$item->id = $id;
+			$item->name = $this->items[$id]["name"];
+			
+			return $item;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public function TalkPublic($message)
+	{
+		$pack = "";
+		$pack .= chr(Protocol::A['Report']);
+		$pack .= chr(Protocol::F['Talk']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= $message;
+		$this->Send($pack);
+	}
 	
 	public function ReadCharacterData($packet)
 	{
@@ -146,7 +418,24 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 	{
 		Console::Log($this->nearby_characters[$id]->name ." left the view");
 		unset($this->nearby_characters[$id]);
-
+	}
+	
+	public function GetNearbyCharacter($id)
+	{
+		return isset($this->nearby_characters[$id]) ? $this->nearby_characters[$id] : null;
+	}
+	
+	public function GetNearbyCharacterByName($name)
+	{
+		foreach($this->nearby_characters as $key => $val)
+		{
+			if(strtolower($name) == strtolower($val->name))
+			{
+				return $this->nearby_characters[$key];
+			}
+		}
+		
+		return null;
 	}
 	
 	public function SetMe($character)
@@ -166,11 +455,6 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		$this->Send($pack);
 		
 		$this->me->direction = $direction;
-	}
-	
-	public function GetNearbyCharacter($id)
-	{
-		return isset($this->nearby_characters[$id]) ? $this->nearby_characters[$id] : null;
 	}
 	
 	public function OpenGlobal()
@@ -357,6 +641,10 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 				$pack .= Protocol::EncodeInteger(rand(32,500), 2);
 				$this->Send($pack);
 				$this->last_pong = time();
+			}
+			if($this->trade !== null)
+			{
+				$this->trade->Process();
 			}
 			
 		}

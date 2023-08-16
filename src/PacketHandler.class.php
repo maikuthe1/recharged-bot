@@ -166,7 +166,7 @@ class PacketHandler
 		$unk1 = $packet->get_int(1);
 					
 		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
-			//paperdoll stuff?
+			//paperdoll
 			$item_id = $packet->get_int(2);
 			$properties = $packet->get_bytes(1);
 			$charge = $packet->get_bytes(1);
@@ -229,6 +229,98 @@ class PacketHandler
 		$this->eobot->SetState(EOBot::STATE_IN_GAME);
 	}
 	
+	public function Trade_Reply($packet)
+	{
+		$char1_id = $packet->get_int(2);
+		$char1_items = array();
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
+			$item_id = $packet->get_int(2);
+			$properties = $packet->get_bytes(1);
+			$charge = $packet->get_bytes(1);
+			$tier = $packet->get_bytes(1);
+			$unk_property1 = $packet->get_bytes(1);
+			$unk_property2 = $packet->get_bytes(1);
+			$unk_property3 = $packet->get_bytes(1);
+			$item_amount = $packet->get_int(4);
+			
+			$char1_items[$item_id] = $item_amount; 
+		}
+		$packet->ignore(1); // 255
+		
+		$char2_id = $packet->get_int(2);
+		$char2_items = array();
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
+			$item_id = $packet->get_int(2);
+			$properties = $packet->get_bytes(1);
+			$charge = $packet->get_bytes(1);
+			$tier = $packet->get_bytes(1);
+			$unk_property1 = $packet->get_bytes(1);
+			$unk_property2 = $packet->get_bytes(1);
+			$unk_property3 = $packet->get_bytes(1);
+			$item_amount = $packet->get_int(4);
+			
+			$char2_items[$item_id] = $item_amount; 
+		}
+		$packet->ignore(1); // 255
+		
+		if($char1_id == $this->eobot->me->id)
+		{
+			$this->eobot->UpdateTrade($char1_items, $char2_items);
+		}
+		else
+		{
+			$this->eobot->UpdateTrade($char2_items, $char1_items);
+		}
+	}
+	
+	public function Trade_Use($packet)
+	{
+		$char1_id = $packet->get_int(2);
+		$char1_items = array();
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
+			$item_id = $packet->get_int(2);
+			$properties = $packet->get_bytes(1);
+			$charge = $packet->get_bytes(1);
+			$tier = $packet->get_bytes(1);
+			$unk_property1 = $packet->get_bytes(1);
+			$unk_property2 = $packet->get_bytes(1);
+			$unk_property3 = $packet->get_bytes(1);
+			$item_amount = $packet->get_int(4);
+			
+			$char1_items[$item_id] = $item_amount; 
+		}
+		$packet->ignore(1); // 255
+		
+		$char2_id = $packet->get_int(2);
+		$char2_items = array();
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
+			$item_id = $packet->get_int(2);
+			$properties = $packet->get_bytes(1);
+			$charge = $packet->get_bytes(1);
+			$tier = $packet->get_bytes(1);
+			$unk_property1 = $packet->get_bytes(1);
+			$unk_property2 = $packet->get_bytes(1);
+			$unk_property3 = $packet->get_bytes(1);
+			$item_amount = $packet->get_int(4);
+			
+			$char2_items[$item_id] = $item_amount; 
+		}
+		$packet->ignore(1); // 255
+		
+		if($char1_id == $this->eobot->me->id)
+		{
+			$this->eobot->FinishTrade($char1_items, $char2_items);
+		}
+		else
+		{
+			$this->eobot->FinishTrade($char2_items, $char1_items);
+		}
+	}
+	
 	public function Connection_Player($packet)
 	{
 		$s1 = $packet->get_int(2);
@@ -246,6 +338,13 @@ class PacketHandler
 		$pack .= Protocol::EncodeInteger($next_seq);
 		$pack .= Protocol::EncodeInteger(106, 1);
 		$this->eobot->Send($pack);
+	}
+	
+	public function Trade_Close($packet)
+	{
+		$id = $packet->get_int(2);
+		
+		$this->eobot->TradeClosed();
 	}
 	
 	public function Talk_Spec($packet)
@@ -275,20 +374,51 @@ class PacketHandler
 		{
 			if(in_array($name, $this->eobot->config->get("Game", "Masters")))
 			{
+				$caller = $this->eobot->GetNearbyCharacterByName($name);
+				
 				$message_split = explode(' ', $message);
 				$command = $message_split[0];
 				$command = substr($command, 1, strlen($command));
 				array_shift($message_split);
 				$callback = array($this->command_handler, $command);
 				if (is_callable($callback)) {
-					$callback($message_split);
+					$callback($message_split, $caller);
 				}
 				else
 				{
-					Console::Log("Unhandled command " . $command . ".");
+					Console::Log("Unknown command " . $command . ".");
 				}
 			}
 		}
+	}
+	
+	public function Trade_Request($packet)
+	{
+		if($this->eobot->IsTrading())
+			return;
+		
+		$packet->ignore(1); // always 138
+		$char_id = $packet->get_int(2);
+		
+		$partner = $this->eobot->GetNearbyCharacter($char_id);
+		
+		if(in_array($partner->name, $this->eobot->config->get("Game", "Masters")))
+		{
+			Console::Log($partner->name ." requested a trade");
+			
+			$this->eobot->AcceptTradeRequest($partner);
+		}
+	}
+	
+	public function Trade_Open($packet)
+	{
+		$victim_id = $packet->get_int(2);
+		$victim_name = $packet->get_string();
+		
+		$starter_id = $packet->get_int(2);
+		$starter_name = $packet->get_string();
+		
+		$this->eobot->TradeOpen();
 	}
 	
 	public function Welcome_Agree($packet)

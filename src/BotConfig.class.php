@@ -25,4 +25,16 @@ class BotConfig
 		Console::Warning("Config ". $section . " -> " . $key . " not found.");
         return null;
 	}
+	
+	public function set($option, $value)
+	{
+		foreach($this->config as $section => $arr)
+		{
+			foreach($arr as $key => $val)
+			if($key == $option)
+			{
+				$this->config[$section][$key] = $value;
+			}
+		}
+	}
 }

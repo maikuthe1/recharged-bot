@@ -40,6 +40,17 @@ class ChatMessage
 	public $message;
 }
 
+class LocalMessage extends ChatMessage
+{
+	public $character_id;
+}
+
+class EOItem
+{
+	public $name;
+	public $id;
+}
+
 class EOCharacter {
 	const DIRECTION_MASK = 0x03;     // 0b00000011
 	const SITTING_MASK = 0x10;       // 0b00010000
