@@ -14,10 +14,24 @@ class CommandHandler
 	
 	public function Say($args, $caller)
 	{
-		if(count($args, $caller) == 0)
+		if(count($args) == 0)
 			return;
 		$message = implode(' ', $args);
 		$this->eobot->TalkPublic($message);
+	}
+	
+	public function Sit($args)
+	{
+		if($this->eobot->me->sitting == 0)
+		{
+			$this->eobot->Sit();
+			return;
+		}
+		if($this->eobot->me->sitting == 1)
+		{
+			$this->eobot->Stand();
+			return;
+		}
 	}
 	
 	public function Give($args, $caller)
@@ -47,6 +61,15 @@ class CommandHandler
 		if(count($giving_items) > 0)
 		{
 			$this->eobot->RequestTrade($caller, $expected_items, $giving_items);
+		}
+	}
+	
+	public function Use($args)
+	{
+		$item = $this->eobot->GetItemByName(implode(" ", $args));
+		if($item !== null)
+		{
+			$this->eobot->UseItem($item->id);
 		}
 	}
 	

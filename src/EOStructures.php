@@ -96,16 +96,31 @@ class EOInventory {
         $this->items = array();
     }
 
-    public function add($id, $amount) {
-        if (isset($this->items[$id])) {
-            $this->items[$id] += $amount;
-        } else {
-            $this->items[$id] = $amount;
+    public function Add($item, $amount) {
+		$id = $item->id;
+        if (isset($this->items[$id]))
+		{
+            $this->items[$id]["amount"] += $amount;
+        }
+		else
+		{
+			$this->items[$id]["data"] = $item;
+            $this->items[$id]["amount"] = $amount;
+        }
+    }
+	
+	public function Remove($item, $amount) {
+		$id = $item->id;
+        if (isset($this->items[$id]))
+		{
+            $this->items[$id]["amount"] -= $amount;
+			if($this->items[$id]["amount"] <= 0)
+				unset($this->items[$id]);
         }
     }
 
-    public function get_amount($id) {
-        return $this->items[$id] ?? 0;
+    public function GetAmount($id) {
+        return $this->items[$id]["amount"] ?? 0;
     }
 }
 
@@ -143,4 +158,49 @@ class EOPaperdoll
         $this->bracer1 = $bracer1;
         $this->bracer2 = $bracer2;
     }
+}
+
+class GatherNode
+{
+	public $id;
+	public $amount = 0;
+	public $resource_type;
+	public $map_x;
+	public $map_y;
+}
+
+class EOMap
+{
+	public $id;
+	public $data;
+	public $gather_nodes;
+	
+	function __construct($id)
+	{
+		if(file_exists("data/maps/" . $id .".json"))
+		{
+			$jsonString = file_get_contents("data/maps/" . $id .".json");
+			$map_data = json_decode($jsonString, true);
+			$this->gather_nodes = array();
+			
+			foreach($map_data["resources"] as $res_id => $res_data)
+			{
+				$node = new GatherNode();
+				$node->id = $res_id;
+				$node->resource_type = $res_data["res_type"];
+				$node->map_x = $res_data["x"];
+				$node->map_y = $res_data["y"];
+				
+				$this->gather_nodes[$res_id] = $node;
+			}
+			
+			Console::Log("Loaded map " . $id);
+			return $this;
+		}
+		else
+		{
+			Console::Log("Couldn't load map " . $id, "warning");
+			return null;
+		}
+	}
 }

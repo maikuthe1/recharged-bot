@@ -9,107 +9,119 @@ require_once('src/BotConfig.class.php');
 require_once('src/ServerSocket.class.php');
 require_once('src/CommandHandler.class.php');
 require_once('src/PacketHandler.class.php');
+require_once('src/Trade.class.php');
 
-class Trade
+class HarvestBot
 {
-	private $my_items;
-	private $their_items;
-	private $expected_items;
-	private $giving_items;
-	private $last_action;
-	private $eobot;
-	private $partner;
-	private $state;
+	const HARVEST_IDLE = 0;
+	const HARVEST_WAIT_FOR_GATHER_PLAYER = 1;
+	const HARVEST_GATHERING = 2;
+	const HARVEST_WAIT_FOR_GATHER_SWAP = 3;
 	
-	function __construct(&$eobot, $partner)
+	private $eobot;
+	private $state;
+	private $requets_time;
+	private $request_reply_time;
+	private $current_node;
+	private $unk1;
+	private $unk2;
+	private $unk3;
+	private $unk4;
+	
+	
+	function __construct(&$eobot)
 	{
-		$this->state = Protocol::TRADE_REQUESTED;
+		$this->state = HarvestBot::HARVEST_IDLE;
 		$this->eobot = $eobot;
-		$this->partner = $partner;
-		$this->my_items = array();
-		$this->their_items = array();
-		$this->expected_items = array();
-		$this->giving_items = array($this->eobot->GetItemByName("eon")->id => 1);
-		$this->last_action = time();
+		$this->request_time = time();
+		$this->request_reply_time = time();
 	}
 	
-	public function GetPartner() { return $this->partner; }
+	public function Gather_Player($packet)
+	{
+		$this->unk1 = $packet->get_int(4);
+		$this->request_reply_time = time();
+		$this->state = HarvestBot::HARVEST_GATHERING;
+		
+	}
 	
-	public function GetState() { return $this->state; }
+	public function Gather_Agree($packet)
+	{
+		// TODO: this should be in gather swap but that packet doesnt arrive for some reason, maybe because we cant see the node
+		//$this->request_reply_time = time();
+		//$this->request_time = time();
+		//$this->state = HarvestBot::HARVEST_IDLE;
+	}
 	
-	public function SetState($new_state) { $this->state = $new_state; }
-	
-	public function ResetTimer() { $this->last_action = time(); }
-	
+	public function Gather_Swap($packet)
+	{
+		$this->request_reply_time = time();
+		$this->request_time = time();
+		$this->state = HarvestBot::HARVEST_IDLE;
+	}
+
 	public function Process()
 	{
-		if(time() > $this->last_action + $this->eobot->config->get("Game", "TradeTimeout"))
+		if(!isset($this->eobot->map) || $this->eobot->GetState() != EOBot::STATE_IN_GAME || $this->eobot->IsTrading())
 		{
-			// time out
-			$this->eobot->CancelTrade();
 			return;
 		}
 		
-		// check if we're waiting for other player to accept our trade request
-		if($this->state <= Protocol::TRADE_REQUESTED)
-			return;
-		
-		// check if we have added all the items we want to give
-		foreach($this->giving_items as $key => $val)
+		if($this->state == HarvestBot::HARVEST_IDLE)
 		{
-			if(isset($this->my_items[$key]))
+			$closest_node = null;
+			$closest_distance = PHP_INT_MAX;
+			
+			if(!isset($this->current_node))
 			{
-				continue;
+				foreach ($this->eobot->map->gather_nodes as $node)
+				{
+					$distance = abs($this->eobot->me->map_x - $node->map_x) + abs($this->eobot->me->map_y - $node->map_y);
+
+					if ($distance < $closest_distance)
+					{
+						$closest_distance = $distance;
+						$closest_node = $node;
+					}
+				}
+				if($closest_node === null)
+					return;
+				$this->current_node = $closest_node;
+				$this->request_time = time();
 			}
-			// add missing item to trade
-			// TODO: check if we actually have the item in our inventory
-			$this->my_items[$key] = $val;
-			$this->eobot->TradeAddItem($key, $val);
-			return;
+			$this->eobot->RequestNodeGather($this->current_node);
+			$this->state = HarvestBot::HARVEST_WAIT_FOR_GATHER_PLAYER;
 		}
 		
-		// check if partner has given all the items we expect
-		foreach($this->expected_items as $key => $val)
+		if($this->state == HarvestBot::HARVEST_GATHERING)
 		{
-			if(isset($this->their_items[$key]))
+			if(time() > $this->request_reply_time + $this->eobot->config->get("Harvesting", "HarvestDelay"))
 			{
-				continue;
+				$this->eobot->GatherNode($this->current_node, $this->unk1);
+				$this->state = HarvestBot::HARVEST_WAIT_FOR_GATHER_SWAP;
 			}
-			// they are missing an item
-			return;
 		}
 		
-		// check if we have agreed
-		if($this->state != Protocol::TRADE_ACCEPTED)
+		if(time() > $this->request_reply_time + 4)
 		{
-			if(time() > $this->last_action + $this->eobot->config->get("Game", "TradeConfirmDelay"))
+			$harvest_item = $this->eobot->GetItemById($this->eobot->config->get("Harvesting", "HarvestItem"));
+			$amount = $this->eobot->me->inventory->GetAmount($harvest_item->id);
+			
+			if($amount > 0 && $this->eobot->TradeRequestPending() != true)
 			{
-				// make sure other player has given at least 1 item
-				if(count($this->their_items) > 0)
-					$this->eobot->AcceptTrade();				
+				foreach($this->eobot->config->get("Game", "Masters") as $master_name)
+				{
+					$master = $this->eobot->GetNearbyCharacterByName($master_name);
+					if($master !== null)
+					{
+						$this->eobot->RequestTrade($master, array(), array($harvest_item->id => 500));
+						$this->request_reply_time = time();
+						return;
+					}
+				}
 			}
-			return;
+			$this->eobot->should_exit = true;
 		}
-		
-		// everything is ok, waiting on other player to accept
-	}
-	
-	public function SetExpectedItems($items)
-	{
-		$this->expected_items = $items;
-	}
-	
-	public function SetGivingItems($items)
-	{
-		$this->giving_items = $items;
-	}
-	
-	public function TradeChanged($mine, $theirs)
-	{
-		$this->ResetTimer();
-		$this->state = Protocol::TRADE_TRADING;
-		$this->my_items = $mine;
-		$this->their_items = $theirs;
 	}
 }
 
@@ -142,10 +154,14 @@ class EOBot
 	public $me;
 	private $items;
 	private $trade;
+	private $harvest_bot;
+	public $map;
+	public $should_exit;
 	
-	function __construct()
+	function __construct($config_path = "config.ini")
 	{
-		$this->config = new BotConfig();
+		$this->should_exit = false;
+		$this->config = new BotConfig($config_path);
 		$this->last_pong = time();
 		$this->last_pong_reply = time();
 		$this->chat_log = array("Local" => array(), 
@@ -158,6 +174,8 @@ class EOBot
 		$jsonString = file_get_contents('items.json');
 		$this->items = json_decode($jsonString, true);
 		$this->trade = null;
+		$this->harvest_bot = new HarvestBot($this);
+		$this->map = null;
 
 		echo " 88888888b  .88888.   888888ba             dP   
  88        d8'   `8b  88    `8b            88   
@@ -183,9 +201,17 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		return $this->trade->GetState() > Protocol::TRADE_REQUESTED;
 	}
 	
+	public function TradeRequestPending(){
+		if($this->trade === null)
+			return false;
+		
+		return $this->trade->GetState() == Protocol::TRADE_REQUESTED;
+	}
+	
 	public function UpdateTrade($mine, $theirs)
 	{
-		$this->trade->TradeChanged($mine, $theirs);
+		if($this->trade !== null)
+			$this->trade->TradeChanged($mine, $theirs);
 	}
 	
 	public function AcceptTradeRequest($partner)
@@ -242,9 +268,19 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		$this->Send($pack);
 	}
 	
-	public function FinishTrade($item_lost, $items_gained)
+	public function FinishTrade($items_lost, $items_gained)
 	{
-		// TODO: update inventory
+		foreach($items_lost as $key => $val)
+		{
+			$item = $this->GetItemById($key);
+			$this->me->inventory->Remove($item, $val);
+		}
+		
+		foreach($items_gained as $key => $val)
+		{
+			$item = $this->GetItemById($key);
+			$this->me->inventory->Add($item, $val);
+		}
 		
 		if($this->trade !== null)
 		{
@@ -299,6 +335,45 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		$pack .= Protocol::EncodeInteger($next_seq);
 		$pack .= Protocol::EncodeInteger(138, 1);
 		$pack .= Protocol::EncodeInteger($character->id, 2);
+		$this->Send($pack);
+	}
+	
+	public function Walk($direction)
+	{
+        $xoff = array(0 => 0, 1 => -1, 2 => 0, 3 => 1 );
+		$yoff = array(0 => 1, 1 => 0, 2 => -1, 3 => 0 );
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger($direction);
+		$pack .= Protocol::EncodeInteger(Protocol::timestamp(), 3);
+		$pack .= Protocol::EncodeInteger($this->me->map_x + $xoff[$direction]);
+		$pack .= Protocol::EncodeInteger($this->me->map_y + $yoff[$direction]);
+		$this->Send($pack);
+		
+		$this->me->map_x = $this->me->map_x + $xoff[$direction];
+		$this->me->map_y = $this->me->map_y + $yoff[$direction];
+    }
+	
+	public function RequestNodeGather($node)
+	{
+		$pack = "";
+		$pack .= chr(Protocol::A['Take']);
+		$pack .= chr(Protocol::F['Gather']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger($node->id);
+		$this->Send($pack);
+	}
+	
+	public function GatherNode($node, $unk1)
+	{
+		$pack = "";
+		$pack .= chr(Protocol::A['Accept']);
+		$pack .= chr(Protocol::F['Gather']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger($unk1, 4);
+		$pack .= Protocol::EncodeInteger($node->id, 1);
 		$this->Send($pack);
 	}
 	
@@ -427,6 +502,9 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 	
 	public function GetNearbyCharacterByName($name)
 	{
+		if(!isset($this->nearby_characters))
+			return null;
+		
 		foreach($this->nearby_characters as $key => $val)
 		{
 			if(strtolower($name) == strtolower($val->name))
@@ -438,10 +516,48 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		return null;
 	}
 	
+	public function AddInventoryItem($item, $amount)
+	{
+		if($item === null)
+			return;
+		$this->me->inventory->Add($item, $amount);
+	}
+	
+	public function RemoveInventoryItem($item, $amount)
+	{
+		$this->me->inventory->Remove($item, $amount);
+	}
+	
 	public function SetMe($character)
 	{
 		$this->me = $character;
 		Console::Log("I am " . $character->name .", a lvl ". $character->level . " ". (($character->gender) ? "male" : "female"));
+	}
+	
+	public function LoadMap($id)
+	{
+		$this->map = new EOMap($id);
+	}
+	
+	public function ResourceGrew($node_id, $amount)
+	{
+		if(isset($this->map))
+		{
+			if(isset($this->map->nodes[$node_id]))
+			{
+				$this->map->nodes[$node_id]->amount = $amount;
+			}
+		}
+	}
+	
+	public function ResourceGathered($node_id, $amount)
+	{
+		$this->ResourceGrew($node_id, $amount);
+	}
+	
+	public function ObtainedGatherItem($item, $amount = 1)
+	{
+		$this->AddInventoryItem($item, $amount);
 	}
 	
 	public function Face($direction)
@@ -455,6 +571,51 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		$this->Send($pack);
 		
 		$this->me->direction = $direction;
+	}
+	
+	public function Sit()
+	{
+		if($this->me->sitting == 0)
+		{
+						$pack = "";
+			$pack .= chr(Protocol::A['Request']);
+			$pack .= chr(Protocol::F['Sit']);
+			$next_seq = $this->packet_processor->next_sequence();
+			$pack .= Protocol::EncodeInteger($next_seq);
+			$pack .= Protocol::EncodeInteger(1, 1);
+			$pack .= Protocol::EncodeInteger($this->me->map_x, 1);
+			$pack .= Protocol::EncodeInteger($this->me->map_y, 1);
+			$this->Send($pack);
+			
+			$this->me->sitting = 1;
+		}
+	}
+	
+	public function Stand()
+	{
+		if($this->me->sitting == 1)
+		{			
+			$pack = "";
+			$pack .= chr(Protocol::A['Request']);
+			$pack .= chr(Protocol::F['Sit']);
+			$next_seq = $this->packet_processor->next_sequence();
+			$pack .= Protocol::EncodeInteger($next_seq);
+			$pack .= Protocol::EncodeInteger(2, 1);
+			$this->Send($pack);
+			
+			$this->me->sitting = 0;
+		}
+	}
+	
+	public function UseItem($id)
+	{
+		$pack = "";
+		$pack .= chr(Protocol::A['Use']);
+		$pack .= chr(Protocol::F['Item']);
+		$next_seq = $this->packet_processor->next_sequence();
+		$pack .= Protocol::EncodeInteger($next_seq);
+		$pack .= Protocol::EncodeInteger($id, 2);
+		$this->Send($pack);
 	}
 	
 	public function OpenGlobal()
@@ -562,9 +723,14 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 		Console::Log($packet->get_type()->name . " (". $family . " ". $action .") ". $length ." : \n" . $packet->pretty_data(), $direction);
 	}
 	
+	function Process()
+	{
+		
+	}
+	
 	public function Start()
 	{
-		$this->server_socket = new ServerSocket($this->config->get("Connection", "Host"), $this->config->get("Connection", "Port"));
+		$this->server_socket = new ServerSocket($this->config->get("Connection", "Host"), $this->config->get("Connection", "Port"), $this);
 		Console::Log("Connected to " . $this->config->get("Connection", "Host") . ":" . $this->config->get("Connection", "Port"));
 		$this->packet_processor = new PacketProcessor(true);
 		$this->packet_handler = new PacketHandler($this);
@@ -585,16 +751,29 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 			$pack .= Protocol::EncodeInteger(intval($version[$i]));
 		}
 		$pack .= Protocol::EncodeInteger(113);
-		$pack .= Protocol::EncodeInteger(10);
-		$hdid = $this->config->get("Client", "HDID");
-		for($i = 0; $i < strlen($hdid); $i++)
+		
+		if($this->config->get("Client", "HDIDRandom"))
 		{
-			$pack .= Protocol::EncodeInteger(ord($hdid[$i]));
+			$len = rand(8,12);
+			$pack .= Protocol::EncodeInteger($len);
+			for($i = 0; $i < $len; $i++)
+			{
+				$pack .= Protocol::EncodeInteger(ord(chr(rand(0,9))));
+			}
+		}
+		else
+		{
+			$hdid = $this->config->get("Client", "HDID");
+			$pack .= Protocol::EncodeInteger(strlen($hdid));
+			for($i = 0; $i < strlen($hdid); $i++)
+			{
+				$pack .= Protocol::EncodeInteger(ord($hdid[$i]));
+			}
 		}
 		$this->Send($pack);
 		
 		// Receive data and handle packets
-		while(true)
+		while($this->should_exit === false)
 		{
 			$response = $this->server_socket->Receive();
 			if($response == null)
@@ -611,6 +790,11 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 					$this->last_pong = time();
 				}
 				
+				if(time() > $this->last_pong_reply + 3)
+				{
+					break;
+				}
+				
 				continue;
 			}
 			$lenbytes = $response[0];
@@ -621,15 +805,26 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 			$packet = $this->packet_processor->r_process($rawdata);
 			if($this->config->get("Debug", "LogServerPackets"))
 				$this->PrintPacket($packet, "incoming");
-			$callback = array($this->packet_handler, $packet->get_type()->name);
-			if (is_callable($callback)) {
-				$callback($packet);
-				$packet->set_pos(0);
+			
+			$callbacks = array();
+			$callbacks[] = array($this->packet_handler, $packet->get_type()->name);
+			if($this->config->get("Harvesting", "IsHarvestBot"))
+			{
+				$callbacks[] = array($this->harvest_bot, $packet->get_type()->name);
 			}
-			else
+			$handled = false;
+			foreach($callbacks as $callback)
+			{
+				if (is_callable($callback)) {
+					$packet->set_pos(0);
+					$callback($packet);
+					$handled = true;
+				}	
+			}
+			if(!$handled)
 			{
 				if($this->config->get("Debug", "ShowUnhandledPackets"))
-					Console::Log("Unhandled packet " . $packet->get_type()->name, "warning");
+						Console::Log("Unhandled packet " . $packet->get_type()->name, "warning");
 			}
 			if($this->state >= EOBot::STATE_INIT && (time() - $this->last_pong >= 2))
 			{
@@ -642,20 +837,26 @@ oooooooooooooooooooooooooooooooooooooooooooooooo\n";
 				$this->Send($pack);
 				$this->last_pong = time();
 			}
+			
 			if($this->trade !== null)
 			{
 				$this->trade->Process();
 			}
 			
+			if($this->config->get("Harvesting", "IsHarvestBot"))
+			{
+				$this->harvest_bot->Process();
+			}
+			
+			$this->Process();
+			
 		}
-		
-		
 		
 		$this->server_socket->Close();
 	}
 	
 }
 
-$bot = new EOBot();
+//$bot = new EOBot();
 
-$bot->Start();
+//$bot->Start();

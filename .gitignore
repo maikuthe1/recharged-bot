@@ -1,3 +1,5 @@
 config.ini
 log.txt
 extra/
+cotton_bots/
+harvest_controller.php

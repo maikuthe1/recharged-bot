@@ -82,8 +82,9 @@ class PacketHandler
 			$character->name = $packet->get_string();
 			$character->date_created = $packet->get_string();
 			$character->last_login = $packet->get_string();
+			
 			$character->id = $packet->get_int(4);
-			$character->level = $packet->get_int(2);
+			/*$character->level = $packet->get_int(2);
 			$character->gender = $packet->get_int(1);
 			$character->hairstyle = $packet->get_bytes(1);
 			$character->haircolor = $packet->get_bytes(1);
@@ -93,7 +94,12 @@ class PacketHandler
 			{
 				$character->paperdoll = array();
 				$character->paperdoll[] = $packet->get_int(1);
+			}*/
+			while($packet->get_bytes(1, false) != Protocol::COMMA)
+			{
+				$packet->get_int(1);
 			}
+			$packet->get_int(1); // 255
 			$characters[$character->name] = $character;
 		}
 		//print_r($characters);
@@ -115,11 +121,18 @@ class PacketHandler
 		else
 		{
 			Console::Log("Character " . $character_name . " not found", "error");
-			exit(1);
+			$this->eobot->should_exit = true;
 		}
 		
 		//Console::Log("Bytes left: " . $packet-);
 		
+	}
+	
+	public function Channel_Player($packet)
+	{
+		// TODO: fix this
+		// it breaks our harvest bot so disconnect
+		$this->eobot->should_exit = true;
 	}
 	
 	public function Message_Net242($packet)
@@ -132,6 +145,9 @@ class PacketHandler
 		$packet->ignore(2);
 		$int1 = $packet->get_int(2);
 		$int2 = $packet->get_int(4);
+		$map_id = $packet->get_int(2);
+		
+		$this->eobot->LoadMap($map_id);
 		
 		$pack = "";
 		$pack .= chr(Protocol::A['Spec']);
@@ -149,13 +165,15 @@ class PacketHandler
 		$n = $packet->get_int(1);
 		$this->packet_processor->UpdateEncryptionFromServer($n);
 		
-		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
 			// pre-data 
 			$packet->ignore(1);
 		}
 		$packet->ignore(1); //255
 		
-		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
 			// pre-data2
 			$packet->ignore(1);
 		}
@@ -165,7 +183,8 @@ class PacketHandler
 		
 		$unk1 = $packet->get_int(1);
 					
-		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
 			//paperdoll
 			$item_id = $packet->get_int(2);
 			$properties = $packet->get_bytes(1);
@@ -177,18 +196,31 @@ class PacketHandler
 		}
 		$packet->ignore(1); //255
 		
-		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
-			$packet->ignore(1);
-			//inventory
-			//$item_id = $packet->get_int(2);
-			//$amount = $packet->get_int(2);
+		$weight = $packet->get_int(2);
+		$max_weight = $packet->get_int(2);
 		
+		$items = array();
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
+			//inventory
+			$item_id = $packet->get_int(2);
+			$properties = $packet->get_bytes(1);
+			$charge = $packet->get_bytes(1);
+			$tier = $packet->get_bytes(1);
+			$unk_property1 = $packet->get_bytes(1);
+			$unk_property2 = $packet->get_bytes(1);
+			$unk_property3 = $packet->get_bytes(1);
+			$amount = $packet->get_int(4);
+		
+			$item = $this->eobot->GetItemById($item_id);
+			Console::Log("Inventory item: ". $amount . " ". $item->name);
 			
-			//logMessage("Paperdoll item: ". $item_id);
+			$items[] = array("data" => $item, "amount" => $amount);
 		}
 		$packet->ignore(1); //255
 		
-		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+		while ($packet->get_bytes(1, false) != Protocol::COMMA)
+		{
 			$packet->ignore(1);
 			//spells
 		}
@@ -203,6 +235,12 @@ class PacketHandler
 			{
 				$character = $this->eobot->ReadCharacterData($packet);
 				$this->eobot->SetMe($character);
+				foreach($items as $item)
+				{
+					$this->eobot->AddInventoryItem($item["data"], $item["amount"]);
+				}
+				
+				print_r($character);
 			}
 			else
 			{
@@ -217,16 +255,68 @@ class PacketHandler
 		}
 		$packet->ignore(1); //255
 		
+		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+			$packet->ignore(1);
+			//unk
+		}
+		$packet->ignore(1); //255
+		
+		
+		while ($packet->get_bytes(1, false) != Protocol::COMMA) {
+			// gatherables
+			$res_id = $packet->get_int(1);
+			$res_amount = $packet->get_int(1);
+			
+			Console::Log("Resource: " . $res_id . " " . $res_amount);
+		}
+		$packet->ignore(1); //255
+		
 		//2 more 255's after this, not sure what for yet maybe harvest stuff
 		
 		Console::Log("MotD: ". $motd);
-		
-		Console::Log("Loaded map");
 		
 		if($this->eobot->config->get("Game", "OpenGlobalOnLogin"))
 			$this->eobot->OpenGlobal();
 		
 		$this->eobot->SetState(EOBot::STATE_IN_GAME);
+	}
+	
+	public function Gather_Time($packet)
+	{
+		// resources grow
+		while($packet->bytes_left() > 0)
+		{
+			$node_id = $packet->get_int(1);
+			$amount = $packet->get_int(1);
+			
+			$this->eobot->ResourceGrew($node_id, $amount);
+		}
+	}
+	
+	public function Gather_Agree($packet)
+	{
+		// resource types: cotton: 1, twigs: 5
+		// reource harvested by player
+		$node_id = $packet->Get_int(1);
+		$amount = $packet->Get_int(1);
+		$res_type = $packet->Get_int(1);
+		
+		$this->eobot->ResourceGathered($node_id, $amount);
+	}
+	
+	public function Gather_Swap($packet)
+	{
+		// we got an item from gathering
+		$item_id = $packet->get_int(2);
+		$properties = $packet->get_bytes(1);
+		$charge = $packet->get_bytes(1);
+		$tier = $packet->get_bytes(1);
+		$unk_property1 = $packet->get_bytes(1);
+		$unk_property2 = $packet->get_bytes(1);
+		$unk_property3 = $packet->get_bytes(1);
+		
+		$item = $this->eobot->GetItemById($item_id);
+		$this->eobot->ObtainedGatherItem($item, 1);
 	}
 	
 	public function Trade_Reply($packet)
